@@ -1,0 +1,1215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Crescat Westfield — Premium Lifestyle Destination</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Montserrat:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* ── Reset & Base ── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --gold:       #C9A84C;
+    --gold-light: #E8C97A;
+    --gold-pale:  #F5E9C8;
+    --ink:        #0C0A09;
+    --ink-soft:   #1C1917;
+    --stone:      #44403C;
+    --stone-mid:  #78716C;
+    --stone-pale: #A8A29E;
+    --cream:      #FAF8F3;
+    --cream-mid:  #F0EBE1;
+    --white:      #FFFFFF;
+    --nav-h:      72px;
+    --ease-luxury: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Montserrat', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    overflow-x: hidden;
+  }
+  img { display: block; max-width: 100%; }
+  a { text-decoration: none; color: inherit; }
+
+  /* ── Utilities ── */
+  .serif { font-family: 'Cormorant', serif; }
+  .gold  { color: var(--gold); }
+  .container { width: 100%; max-width: 1320px; margin: 0 auto; padding: 0 32px; }
+  .tag {
+    display: inline-block; font-size: 10px; font-weight: 600;
+    letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold);
+    border-bottom: 1px solid var(--gold); padding-bottom: 2px; margin-bottom: 16px;
+  }
+  .btn-gold {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--gold); color: var(--ink);
+    font-size: 11px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase;
+    padding: 14px 32px; cursor: pointer; border: none;
+    transition: background 0.3s var(--ease-luxury), transform 0.2s;
+  }
+  .btn-gold:hover { background: var(--gold-light); transform: translateY(-1px); }
+  .btn-outline {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: transparent; color: var(--ink);
+    font-size: 11px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase;
+    padding: 13px 32px; cursor: pointer;
+    border: 1px solid var(--ink);
+    transition: all 0.3s var(--ease-luxury);
+  }
+  .btn-outline:hover { background: var(--ink); color: var(--white); }
+  .btn-outline-white {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: transparent; color: var(--white);
+    font-size: 11px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase;
+    padding: 13px 32px; cursor: pointer;
+    border: 1px solid rgba(255,255,255,0.6);
+    transition: all 0.3s var(--ease-luxury);
+  }
+  .btn-outline-white:hover { background: rgba(255,255,255,0.15); border-color: white; }
+
+  /* ── NAVIGATION ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    height: var(--nav-h);
+    background: rgba(12,10,9,0.92);
+    backdrop-filter: blur(12px) saturate(1.4);
+    -webkit-backdrop-filter: blur(12px) saturate(1.4);
+    border-bottom: 1px solid rgba(201,168,76,0.15);
+    transition: background 0.4s;
+  }
+  nav .inner {
+    height: 100%; max-width: 1320px; margin: 0 auto; padding: 0 32px;
+    display: flex; align-items: center; justify-content: space-between; gap: 32px;
+  }
+  .nav-logo {
+    display: flex; flex-direction: column; line-height: 1;
+  }
+  .nav-logo .logo-main {
+    font-family: 'Cormorant', serif; font-size: 22px; font-weight: 600;
+    color: var(--white); letter-spacing: 0.05em;
+  }
+  .nav-logo .logo-sub {
+    font-size: 8px; font-weight: 500; letter-spacing: 0.35em; text-transform: uppercase;
+    color: var(--gold); margin-top: 2px;
+  }
+  .nav-links {
+    display: flex; align-items: center; gap: 28px; list-style: none;
+  }
+  .nav-links li a {
+    font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+    color: rgba(255,255,255,0.75);
+    position: relative; padding-bottom: 2px;
+    transition: color 0.2s;
+  }
+  .nav-links li a::after {
+    content: ''; position: absolute; bottom: -2px; left: 0; right: 0; height: 1px;
+    background: var(--gold); transform: scaleX(0); transform-origin: right;
+    transition: transform 0.3s var(--ease-luxury);
+  }
+  .nav-links li a:hover { color: var(--white); }
+  .nav-links li a:hover::after { transform: scaleX(1); transform-origin: left; }
+  .nav-actions {
+    display: flex; align-items: center; gap: 20px;
+  }
+  .nav-icon {
+    width: 20px; height: 20px; cursor: pointer;
+    color: rgba(255,255,255,0.7);
+    transition: color 0.2s;
+  }
+  .nav-icon:hover { color: var(--gold); }
+  .nav-cta {
+    font-size: 10px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--gold); border: 1px solid rgba(201,168,76,0.5);
+    padding: 8px 20px; cursor: pointer;
+    transition: all 0.3s;
+  }
+  .nav-cta:hover { background: var(--gold); color: var(--ink); border-color: var(--gold); }
+
+  /* ── HERO ── */
+  .hero {
+    height: 100vh; min-height: 700px; position: relative;
+    display: flex; align-items: flex-end;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      linear-gradient(to right, rgba(12,10,9,0.85) 40%, rgba(12,10,9,0.2) 100%),
+      linear-gradient(to top, rgba(12,10,9,0.6) 0%, transparent 50%);
+    background-color: #1a1410;
+    background-image:
+      linear-gradient(135deg, rgba(201,168,76,0.06) 0%, transparent 50%),
+      radial-gradient(ellipse at 70% 50%, rgba(100,70,20,0.3) 0%, transparent 60%);
+  }
+  /* Simulated mall imagery using pure CSS */
+  .hero-art {
+    position: absolute; right: 0; top: 0; bottom: 0; width: 65%;
+    background:
+      linear-gradient(135deg, #2D1F0A 0%, #1C1209 30%, #0D0906 60%, #1A120A 100%);
+  }
+  .hero-art::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse at 30% 40%, rgba(201,168,76,0.18) 0%, transparent 55%),
+      radial-gradient(ellipse at 75% 70%, rgba(150,90,20,0.2) 0%, transparent 50%),
+      radial-gradient(ellipse at 60% 20%, rgba(255,220,120,0.08) 0%, transparent 40%);
+  }
+  .hero-art::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: repeating-linear-gradient(
+      90deg,
+      transparent 0,
+      transparent 100px,
+      rgba(201,168,76,0.03) 100px,
+      rgba(201,168,76,0.03) 101px
+    );
+  }
+  /* Architectural lines */
+  .hero-lines {
+    position: absolute; right: 5%; top: 15%; bottom: 15%; width: 55%;
+    border-left: 1px solid rgba(201,168,76,0.12);
+    border-right: 1px solid rgba(201,168,76,0.08);
+  }
+  .hero-lines::before {
+    content: '';
+    position: absolute; top: 10%; bottom: 10%; left: 25%; right: 25%;
+    border-left: 1px solid rgba(201,168,76,0.07);
+    border-right: 1px solid rgba(201,168,76,0.07);
+  }
+  .hero-content {
+    position: relative; z-index: 2;
+    padding: 0 32px 80px; max-width: 1320px; margin: 0 auto; width: 100%;
+  }
+  .hero-eyebrow {
+    font-size: 10px; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 20px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .hero-eyebrow::before {
+    content: ''; width: 40px; height: 1px; background: var(--gold); flex-shrink: 0;
+  }
+  .hero-title {
+    font-family: 'Cormorant', serif;
+    font-size: clamp(52px, 7vw, 96px);
+    font-weight: 300; line-height: 1.0;
+    color: var(--white);
+    margin-bottom: 24px;
+  }
+  .hero-title em {
+    font-style: italic; color: var(--gold-light);
+  }
+  .hero-desc {
+    font-size: 13px; font-weight: 300; line-height: 1.7;
+    color: rgba(255,255,255,0.65); max-width: 440px;
+    letter-spacing: 0.02em; margin-bottom: 36px;
+  }
+  .hero-actions { display: flex; align-items: center; gap: 20px; }
+  .hero-scroll {
+    position: absolute; right: 48px; bottom: 40px;
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+    color: rgba(255,255,255,0.4); font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase;
+    cursor: pointer;
+  }
+  .scroll-line {
+    width: 1px; height: 50px;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.4; transform: scaleY(1); }
+    50% { opacity: 1; transform: scaleY(1.15); }
+  }
+
+  /* ── TICKER ── */
+  .ticker {
+    background: var(--ink); border-top: 1px solid rgba(201,168,76,0.2);
+    padding: 12px 0; overflow: hidden;
+  }
+  .ticker-track {
+    display: flex; gap: 0; animation: ticker 30s linear infinite;
+    white-space: nowrap;
+  }
+  .ticker-item {
+    flex-shrink: 0; font-size: 11px; font-weight: 500; letter-spacing: 0.12em;
+    text-transform: uppercase; color: rgba(255,255,255,0.5);
+    padding: 0 40px;
+  }
+  .ticker-item .dot {
+    display: inline-block; width: 4px; height: 4px; border-radius: 50%;
+    background: var(--gold); margin: 0 16px 2px; vertical-align: middle;
+  }
+  @keyframes ticker {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* ── CATEGORIES ── */
+  .categories { padding: 80px 0; background: var(--white); }
+  .categories .container { display: flex; flex-direction: column; align-items: center; }
+  .section-header { text-align: center; margin-bottom: 48px; }
+  .section-title {
+    font-family: 'Cormorant', serif;
+    font-size: clamp(36px, 4vw, 56px); font-weight: 400;
+    color: var(--ink); line-height: 1.1;
+  }
+  .section-subtitle {
+    font-size: 13px; font-weight: 300; color: var(--stone-mid);
+    letter-spacing: 0.02em; margin-top: 12px; line-height: 1.7;
+  }
+  .cat-grid {
+    display: grid; grid-template-columns: repeat(6, 1fr); gap: 2px;
+    width: 100%;
+  }
+  .cat-item {
+    position: relative; aspect-ratio: 3/4; overflow: hidden; cursor: pointer;
+    background: var(--cream-mid);
+  }
+  .cat-item:first-child { grid-column: span 2; }
+  .cat-bg {
+    position: absolute; inset: 0; transition: transform 0.6s var(--ease-luxury);
+  }
+  .cat-item:hover .cat-bg { transform: scale(1.05); }
+  /* Category backgrounds — CSS art */
+  .cat-fashion .cat-bg { background: linear-gradient(160deg, #1A0F0A 0%, #3D2010 50%, #1C1008 100%); }
+  .cat-fashion .cat-bg::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 50% 30%, rgba(201,168,76,0.2) 0%, transparent 60%);
+  }
+  .cat-dining .cat-bg { background: linear-gradient(160deg, #0A0F1A 0%, #10203D 50%, #080C1C 100%); }
+  .cat-dining .cat-bg::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 50% 70%, rgba(76,120,201,0.2) 0%, transparent 60%);
+  }
+  .cat-beauty .cat-bg { background: linear-gradient(160deg, #1A0A12 0%, #3D1024 50%, #1C0810 100%); }
+  .cat-beauty .cat-bg::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 60% 40%, rgba(201,76,130,0.2) 0%, transparent 60%);
+  }
+  .cat-living .cat-bg { background: linear-gradient(160deg, #0D1A0A 0%, #1A3D10 50%, #0A1C08 100%); }
+  .cat-living .cat-bg::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 40% 60%, rgba(76,201,100,0.15) 0%, transparent 60%);
+  }
+  .cat-tech .cat-bg { background: linear-gradient(160deg, #0A0F1A 0%, #101A3D 50%, #080C1C 100%); }
+  .cat-tech .cat-bg::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 50% 50%, rgba(100,140,255,0.18) 0%, transparent 60%);
+  }
+  .cat-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.1) 60%);
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 24px 20px;
+    transition: background 0.3s;
+  }
+  .cat-item:hover .cat-overlay {
+    background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 60%);
+  }
+  .cat-count {
+    font-size: 9px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 4px;
+  }
+  .cat-name {
+    font-family: 'Cormorant', serif; font-size: 24px; font-weight: 500;
+    color: var(--white); line-height: 1.1;
+  }
+  .cat-arrow {
+    position: absolute; top: 20px; right: 20px;
+    width: 32px; height: 32px;
+    border: 1px solid rgba(255,255,255,0.3); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    transform: translateX(10px); opacity: 0;
+    transition: all 0.3s var(--ease-luxury);
+    color: white;
+  }
+  .cat-item:hover .cat-arrow { transform: translateX(0); opacity: 1; }
+
+  /* ── FEATURED BRANDS ── */
+  .brands { padding: 80px 0; background: var(--cream); }
+  .brands-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 1px; background: var(--cream-mid);
+    border: 1px solid var(--cream-mid);
+    margin-top: 48px;
+  }
+  .brand-cell {
+    background: var(--white); padding: 32px 24px;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; position: relative; overflow: hidden;
+    transition: background 0.3s;
+    min-height: 100px;
+  }
+  .brand-cell::after {
+    content: ''; position: absolute; inset: 0;
+    background: var(--gold-pale); opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .brand-cell:hover { background: var(--cream); }
+  .brand-cell:hover::after { opacity: 0.4; }
+  .brand-name {
+    font-family: 'Cormorant', serif; font-size: 18px; font-weight: 600;
+    letter-spacing: 0.08em; text-transform: uppercase; color: var(--stone);
+    position: relative; z-index: 1; text-align: center;
+    transition: color 0.3s;
+  }
+  .brand-cell:hover .brand-name { color: var(--ink); }
+
+  /* ── WHAT'S ON (Events) ── */
+  .events { padding: 80px 0; background: var(--ink); }
+  .events .section-title { color: var(--white); }
+  .events .section-subtitle { color: rgba(255,255,255,0.5); }
+  .events-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-top: 48px;
+  }
+  .event-card {
+    position: relative; overflow: hidden; cursor: pointer;
+    min-height: 440px; display: flex; flex-direction: column; justify-content: flex-end;
+  }
+  .event-card:first-child { grid-row: span 2; min-height: 700px; }
+  .event-bg {
+    position: absolute; inset: 0;
+    transition: transform 0.6s var(--ease-luxury);
+  }
+  .event-card:hover .event-bg { transform: scale(1.04); }
+  .ev1 .event-bg { background: linear-gradient(135deg, #1A0F2E 0%, #0D0818 50%, #2A1040 100%); }
+  .ev1 .event-bg::before {
+    content: ''; position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse at 30% 40%, rgba(140,80,220,0.25) 0%, transparent 55%),
+      radial-gradient(ellipse at 70% 70%, rgba(200,160,80,0.15) 0%, transparent 45%);
+  }
+  .ev2 .event-bg { background: linear-gradient(135deg, #0F1A1A 0%, #082020 50%, #061515 100%); }
+  .ev2 .event-bg::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 60% 40%, rgba(80,180,160,0.2) 0%, transparent 55%);
+  }
+  .ev3 .event-bg { background: linear-gradient(135deg, #1A0F0A 0%, #3A1A08 50%, #1A0A05 100%); }
+  .ev3 .event-bg::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 50% 50%, rgba(220,140,40,0.22) 0%, transparent 55%);
+  }
+  .event-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.05) 55%);
+  }
+  .event-content {
+    position: relative; z-index: 2; padding: 32px;
+  }
+  .event-date {
+    display: inline-block; background: var(--gold);
+    font-size: 9px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--ink); padding: 4px 12px; margin-bottom: 14px;
+  }
+  .event-title {
+    font-family: 'Cormorant', serif; font-size: 32px; font-weight: 500;
+    color: var(--white); line-height: 1.15; margin-bottom: 10px;
+  }
+  .event-card:first-child .event-title { font-size: 44px; }
+  .event-desc {
+    font-size: 12px; font-weight: 300; color: rgba(255,255,255,0.6);
+    line-height: 1.65; max-width: 340px; margin-bottom: 20px;
+  }
+  .event-link {
+    font-size: 10px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--gold); display: flex; align-items: center; gap: 8px;
+    transition: gap 0.2s;
+  }
+  .event-link:hover { gap: 14px; }
+
+  /* ── DINING ── */
+  .dining { padding: 80px 0; background: var(--white); }
+  .dining-layout {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 64px; align-items: center; margin-top: 0;
+  }
+  .dining-editorial {
+    position: relative;
+  }
+  .dining-main-img {
+    width: 100%; aspect-ratio: 4/5; overflow: hidden;
+    background: linear-gradient(160deg, #1A0A02 0%, #3D2008 50%, #201005 100%);
+    position: relative;
+  }
+  .dining-main-img::before {
+    content: ''; position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse at 40% 35%, rgba(201,168,76,0.2) 0%, transparent 55%),
+      radial-gradient(ellipse at 70% 70%, rgba(180,80,20,0.18) 0%, transparent 50%);
+  }
+  .dining-inset {
+    position: absolute; bottom: -24px; right: -24px;
+    width: 55%; aspect-ratio: 1;
+    background: linear-gradient(135deg, #0D080A 0%, #2A1015 100%);
+    border: 3px solid var(--white);
+    overflow: hidden;
+  }
+  .dining-inset::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 50% 40%, rgba(201,76,120,0.15) 0%, transparent 60%);
+  }
+  .dining-text { padding: 24px 0; }
+  .dining-text .tag { margin-bottom: 20px; }
+  .dining-title {
+    font-family: 'Cormorant', serif; font-size: clamp(36px, 3.5vw, 52px);
+    font-weight: 400; color: var(--ink); line-height: 1.1; margin-bottom: 20px;
+  }
+  .dining-body {
+    font-size: 13px; font-weight: 300; color: var(--stone-mid);
+    line-height: 1.8; margin-bottom: 32px;
+  }
+  .dining-stats {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 36px;
+  }
+  .stat-item {}
+  .stat-num {
+    font-family: 'Cormorant', serif; font-size: 40px; font-weight: 500;
+    color: var(--gold); line-height: 1;
+  }
+  .stat-label {
+    font-size: 10px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--stone-mid); margin-top: 4px;
+  }
+
+  /* ── OFFERS ── */
+  .offers { padding: 80px 0; background: var(--cream); }
+  .offers-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px;
+  }
+  .offer-card {
+    background: var(--white); position: relative; overflow: hidden; cursor: pointer;
+    transition: transform 0.3s var(--ease-luxury), box-shadow 0.3s;
+  }
+  .offer-card:hover { transform: translateY(-4px); box-shadow: 0 20px 48px rgba(0,0,0,0.1); }
+  .offer-img {
+    height: 220px; position: relative; overflow: hidden;
+  }
+  .offer-img::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom, transparent 50%, rgba(0,0,0,0.4) 100%);
+  }
+  .off1 .offer-img { background: linear-gradient(135deg, #1A0F08 0%, #3D200A 100%); }
+  .off1 .offer-img::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 50% 40%, rgba(201,168,76,0.2) 0%, transparent 60%);
+  }
+  .off2 .offer-img { background: linear-gradient(135deg, #0A0F1A 0%, #102040 100%); }
+  .off2 .offer-img::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 50% 40%, rgba(80,140,220,0.18) 0%, transparent 60%);
+  }
+  .off3 .offer-img { background: linear-gradient(135deg, #0F1A0A 0%, #203D10 100%); }
+  .off3 .offer-img::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 50% 40%, rgba(80,180,80,0.15) 0%, transparent 60%);
+  }
+  .offer-badge {
+    position: absolute; top: 16px; left: 16px; z-index: 2;
+    background: var(--gold); color: var(--ink);
+    font-size: 9px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase;
+    padding: 4px 10px;
+  }
+  .offer-body { padding: 24px; }
+  .offer-category {
+    font-size: 9px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 8px;
+  }
+  .offer-title {
+    font-family: 'Cormorant', serif; font-size: 22px; font-weight: 500;
+    color: var(--ink); margin-bottom: 8px; line-height: 1.2;
+  }
+  .offer-detail {
+    font-size: 12px; font-weight: 300; color: var(--stone-mid); line-height: 1.6;
+    margin-bottom: 16px;
+  }
+  .offer-footer {
+    display: flex; align-items: center; justify-content: space-between;
+    padding-top: 16px; border-top: 1px solid var(--cream-mid);
+  }
+  .offer-store {
+    font-size: 11px; font-weight: 500; color: var(--stone);
+  }
+  .offer-action {
+    font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--gold); display: flex; align-items: center; gap: 6px;
+    transition: gap 0.2s;
+  }
+  .offer-action:hover { gap: 10px; }
+
+  /* ── PLAN YOUR VISIT ── */
+  .visit { padding: 80px 0; background: var(--ink-soft); }
+  .visit .section-title { color: var(--white); }
+  .visit-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; margin-top: 48px;
+  }
+  .visit-card {
+    background: rgba(255,255,255,0.04); padding: 36px 28px;
+    border: 1px solid rgba(255,255,255,0.06);
+    cursor: pointer; position: relative; overflow: hidden;
+    transition: background 0.3s, border-color 0.3s;
+  }
+  .visit-card:hover { background: rgba(201,168,76,0.08); border-color: rgba(201,168,76,0.2); }
+  .visit-icon {
+    width: 44px; height: 44px; margin-bottom: 20px;
+    border: 1px solid rgba(201,168,76,0.3); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--gold);
+  }
+  .visit-label {
+    font-size: 9px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 10px;
+  }
+  .visit-title {
+    font-family: 'Cormorant', serif; font-size: 22px; font-weight: 500;
+    color: var(--white); margin-bottom: 12px; line-height: 1.2;
+  }
+  .visit-detail {
+    font-size: 12px; font-weight: 300; color: rgba(255,255,255,0.45);
+    line-height: 1.7;
+  }
+
+  /* ── NEWSLETTER ── */
+  .newsletter {
+    padding: 80px 0;
+    background: linear-gradient(135deg, #1A0F04 0%, #0C0A09 60%, #0F0A18 100%);
+    position: relative; overflow: hidden;
+  }
+  .newsletter::before {
+    content: ''; position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse at 15% 50%, rgba(201,168,76,0.08) 0%, transparent 50%),
+      radial-gradient(ellipse at 85% 50%, rgba(201,168,76,0.06) 0%, transparent 50%);
+  }
+  .newsletter .container { position: relative; z-index: 1; }
+  .nl-inner {
+    max-width: 640px; margin: 0 auto; text-align: center;
+  }
+  .nl-title {
+    font-family: 'Cormorant', serif; font-size: clamp(36px, 4vw, 56px);
+    font-weight: 300; color: var(--white); line-height: 1.1; margin-bottom: 16px;
+  }
+  .nl-title em { font-style: italic; color: var(--gold-light); }
+  .nl-sub {
+    font-size: 13px; font-weight: 300; color: rgba(255,255,255,0.5);
+    line-height: 1.7; margin-bottom: 36px;
+  }
+  .nl-form { display: flex; gap: 0; max-width: 480px; margin: 0 auto; }
+  .nl-input {
+    flex: 1; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.15);
+    border-right: none; padding: 16px 20px;
+    font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 300;
+    color: var(--white); outline: none;
+    transition: border-color 0.3s;
+  }
+  .nl-input::placeholder { color: rgba(255,255,255,0.3); }
+  .nl-input:focus { border-color: rgba(201,168,76,0.5); }
+  .nl-btn {
+    background: var(--gold); color: var(--ink); border: none; padding: 16px 28px;
+    font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 700;
+    letter-spacing: 0.15em; text-transform: uppercase; cursor: pointer;
+    transition: background 0.3s;
+    flex-shrink: 0;
+  }
+  .nl-btn:hover { background: var(--gold-light); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #050403; border-top: 1px solid rgba(201,168,76,0.12);
+    padding: 64px 0 32px;
+  }
+  .footer-top {
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px;
+    padding-bottom: 48px; border-bottom: 1px solid rgba(255,255,255,0.07);
+    margin-bottom: 32px;
+  }
+  .footer-brand {}
+  .footer-logo {
+    font-family: 'Cormorant', serif; font-size: 28px; font-weight: 600;
+    color: var(--white); letter-spacing: 0.05em; margin-bottom: 4px;
+  }
+  .footer-logo-sub {
+    font-size: 9px; font-weight: 500; letter-spacing: 0.35em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 20px;
+  }
+  .footer-desc {
+    font-size: 12px; font-weight: 300; color: rgba(255,255,255,0.4);
+    line-height: 1.8; max-width: 280px; margin-bottom: 24px;
+  }
+  .footer-socials { display: flex; gap: 12px; }
+  .social-btn {
+    width: 36px; height: 36px;
+    border: 1px solid rgba(255,255,255,0.12);
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; color: rgba(255,255,255,0.4);
+    transition: all 0.3s;
+  }
+  .social-btn:hover { border-color: var(--gold); color: var(--gold); }
+  .footer-col-title {
+    font-size: 10px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 20px;
+  }
+  .footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .footer-links li a {
+    font-size: 12px; font-weight: 300; color: rgba(255,255,255,0.45);
+    transition: color 0.2s;
+  }
+  .footer-links li a:hover { color: var(--white); }
+  .footer-bottom {
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 16px;
+  }
+  .footer-copy {
+    font-size: 11px; font-weight: 300; color: rgba(255,255,255,0.3);
+    letter-spacing: 0.05em;
+  }
+  .footer-legal {
+    display: flex; gap: 24px; list-style: none;
+  }
+  .footer-legal li a {
+    font-size: 11px; font-weight: 300; color: rgba(255,255,255,0.3);
+    transition: color 0.2s;
+  }
+  .footer-legal li a:hover { color: rgba(255,255,255,0.6); }
+
+  /* ── FLOATING PROMO BAR ── */
+  .promo-bar {
+    position: fixed; bottom: 24px; right: 24px; z-index: 900;
+    background: var(--ink); border: 1px solid rgba(201,168,76,0.3);
+    padding: 16px 20px; max-width: 280px;
+    box-shadow: 0 16px 48px rgba(0,0,0,0.4);
+    transform: translateY(120%); opacity: 0;
+    animation: promoIn 0.6s 2s var(--ease-luxury) forwards;
+  }
+  @keyframes promoIn {
+    to { transform: translateY(0); opacity: 1; }
+  }
+  .promo-close {
+    position: absolute; top: 8px; right: 12px;
+    font-size: 18px; color: rgba(255,255,255,0.4); cursor: pointer;
+    line-height: 1; transition: color 0.2s;
+  }
+  .promo-close:hover { color: var(--white); }
+  .promo-label {
+    font-size: 9px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 6px;
+  }
+  .promo-text {
+    font-family: 'Cormorant', serif; font-size: 18px; font-weight: 500;
+    color: var(--white); line-height: 1.2; margin-bottom: 12px;
+  }
+  .promo-cta {
+    font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--gold); display: flex; align-items: center; gap: 6px; cursor: pointer;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 1024px) {
+    .cat-grid { grid-template-columns: repeat(3, 1fr); }
+    .cat-item:first-child { grid-column: span 1; }
+    .events-grid { grid-template-columns: 1fr; }
+    .event-card:first-child { min-height: 440px; }
+    .dining-layout { grid-template-columns: 1fr; gap: 40px; }
+    .dining-inset { right: 0; bottom: -16px; }
+    .footer-top { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 768px) {
+    .container { padding: 0 20px; }
+    .nav-links { display: none; }
+    .cat-grid { grid-template-columns: 1fr 1fr; }
+    .brands-grid { grid-template-columns: repeat(3, 1fr); }
+    .offers-grid { grid-template-columns: 1fr; }
+    .visit-grid { grid-template-columns: 1fr 1fr; }
+    .footer-top { grid-template-columns: 1fr; }
+    .nl-form { flex-direction: column; }
+    .nl-input { border-right: 1px solid rgba(255,255,255,0.15); }
+    .promo-bar { display: none; }
+  }
+  @media (max-width: 480px) {
+    .cat-grid { grid-template-columns: 1fr; }
+    .visit-grid { grid-template-columns: 1fr; }
+    .hero-actions { flex-direction: column; align-items: flex-start; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── NAVIGATION ── -->
+<nav role="navigation" aria-label="Main navigation">
+  <div class="inner">
+    <a href="#" class="nav-logo" aria-label="Crescat Westfield home">
+      <span class="logo-main">Crescat</span>
+      <span class="logo-sub">Premium Lifestyle Destination</span>
+    </a>
+    <ul class="nav-links" role="list">
+      <li><a href="#categories">Stores</a></li>
+      <li><a href="#dining">Dining</a></li>
+      <li><a href="#events">What's On</a></li>
+      <li><a href="#offers">Offers</a></li>
+      <li><a href="#visit">Visit</a></li>
+    </ul>
+    <div class="nav-actions">
+      <!-- Search -->
+      <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-label="Search" role="button" tabindex="0">
+        <circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/>
+      </svg>
+      <!-- Profile -->
+      <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-label="My account" role="button" tabindex="0">
+        <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+      </svg>
+      <a href="#visit" class="nav-cta" role="button">Plan Visit</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero" aria-labelledby="hero-title">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="hero-art" aria-hidden="true"></div>
+  <div class="hero-lines" aria-hidden="true"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow" aria-hidden="true">Colombo's Premier Destination</p>
+    <h1 class="hero-title serif" id="hero-title">
+      Where Luxury<br>Meets <em>Lifestyle</em>
+    </h1>
+    <p class="hero-desc">
+      Over 200 world-class brands across fashion, dining, entertainment and wellness — curated for the extraordinary.
+    </p>
+    <div class="hero-actions">
+      <a href="#categories" class="btn-gold" role="button">
+        Explore Stores
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="#events" class="btn-outline-white" role="button">What's On</a>
+    </div>
+  </div>
+  <div class="hero-scroll" role="button" tabindex="0" aria-label="Scroll down">
+    <div class="scroll-line" aria-hidden="true"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- ── TICKER ── -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <!-- Two sets for infinite loop -->
+    <span class="ticker-item">New Arrivals <span class="dot"></span></span>
+    <span class="ticker-item">Summer Collection 2025 <span class="dot"></span></span>
+    <span class="ticker-item">Dine & Discover <span class="dot"></span></span>
+    <span class="ticker-item">Members get 20% off <span class="dot"></span></span>
+    <span class="ticker-item">Luxury Brands <span class="dot"></span></span>
+    <span class="ticker-item">Free Valet Parking <span class="dot"></span></span>
+    <span class="ticker-item">Open Daily 10am – 10pm <span class="dot"></span></span>
+    <span class="ticker-item">New Arrivals <span class="dot"></span></span>
+    <span class="ticker-item">Summer Collection 2025 <span class="dot"></span></span>
+    <span class="ticker-item">Dine & Discover <span class="dot"></span></span>
+    <span class="ticker-item">Members get 20% off <span class="dot"></span></span>
+    <span class="ticker-item">Luxury Brands <span class="dot"></span></span>
+    <span class="ticker-item">Free Valet Parking <span class="dot"></span></span>
+    <span class="ticker-item">Open Daily 10am – 10pm <span class="dot"></span></span>
+  </div>
+</div>
+
+<!-- ── CATEGORIES ── -->
+<section class="categories" id="categories" aria-labelledby="cat-title">
+  <div class="container">
+    <div class="section-header">
+      <p class="tag">Shop by Category</p>
+      <h2 class="section-title serif" id="cat-title">Discover Your World</h2>
+      <p class="section-subtitle">Curated collections across every lifestyle vertical</p>
+    </div>
+    <div class="cat-grid" role="list">
+      <article class="cat-item cat-fashion" role="listitem">
+        <div class="cat-bg" aria-hidden="true"></div>
+        <div class="cat-overlay">
+          <p class="cat-count">85+ Stores</p>
+          <h3 class="cat-name serif">Fashion &amp; Apparel</h3>
+        </div>
+        <div class="cat-arrow" aria-hidden="true">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </div>
+      </article>
+      <article class="cat-item cat-dining" role="listitem">
+        <div class="cat-bg" aria-hidden="true"></div>
+        <div class="cat-overlay">
+          <p class="cat-count">30+ Restaurants</p>
+          <h3 class="cat-name serif">Dining</h3>
+        </div>
+        <div class="cat-arrow" aria-hidden="true">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </div>
+      </article>
+      <article class="cat-item cat-beauty" role="listitem">
+        <div class="cat-bg" aria-hidden="true"></div>
+        <div class="cat-overlay">
+          <p class="cat-count">40+ Boutiques</p>
+          <h3 class="cat-name serif">Beauty &amp; Wellness</h3>
+        </div>
+        <div class="cat-arrow" aria-hidden="true">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </div>
+      </article>
+      <article class="cat-item cat-living" role="listitem">
+        <div class="cat-bg" aria-hidden="true"></div>
+        <div class="cat-overlay">
+          <p class="cat-count">25+ Stores</p>
+          <h3 class="cat-name serif">Home &amp; Living</h3>
+        </div>
+        <div class="cat-arrow" aria-hidden="true">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </div>
+      </article>
+      <article class="cat-item cat-tech" role="listitem">
+        <div class="cat-bg" aria-hidden="true"></div>
+        <div class="cat-overlay">
+          <p class="cat-count">20+ Stores</p>
+          <h3 class="cat-name serif">Tech &amp; Lifestyle</h3>
+        </div>
+        <div class="cat-arrow" aria-hidden="true">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ── FEATURED BRANDS ── -->
+<section class="brands" aria-labelledby="brands-title">
+  <div class="container">
+    <div class="section-header">
+      <p class="tag">Curated Selection</p>
+      <h2 class="section-title serif" id="brands-title">World-Class Brands</h2>
+    </div>
+    <div class="brands-grid" role="list">
+      <div class="brand-cell" role="listitem"><span class="brand-name serif">Cartier</span></div>
+      <div class="brand-cell" role="listitem"><span class="brand-name serif">Zara</span></div>
+      <div class="brand-cell" role="listitem"><span class="brand-name serif">Rolex</span></div>
+      <div class="brand-cell" role="listitem"><span class="brand-name serif">H&M</span></div>
+      <div class="brand-cell" role="listitem"><span class="brand-name serif">Louis Vuitton</span></div>
+      <div class="brand-cell" role="listitem"><span class="brand-name serif">Apple</span></div>
+      <div class="brand-cell" role="listitem"><span class="brand-name serif">Bulgari</span></div>
+      <div class="brand-cell" role="listitem"><span class="brand-name serif">Nike</span></div>
+      <div class="brand-cell" role="listitem"><span class="brand-name serif">Gucci</span></div>
+      <div class="brand-cell" role="listitem"><span class="brand-name serif">Sephora</span></div>
+      <div class="brand-cell" role="listitem"><span class="brand-name serif">Burberry</span></div>
+      <div class="brand-cell" role="listitem"><span class="brand-name serif">Pandora</span></div>
+    </div>
+    <div style="text-align:center; margin-top:40px;">
+      <a href="#" class="btn-outline" role="button">View All 200+ Stores</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── WHAT'S ON ── -->
+<section class="events" id="events" aria-labelledby="events-title">
+  <div class="container">
+    <div class="section-header">
+      <p class="tag">Experiences &amp; Events</p>
+      <h2 class="section-title serif" id="events-title">What's On</h2>
+      <p class="section-subtitle" style="color:rgba(255,255,255,0.45)">Exceptional moments, curated for you</p>
+    </div>
+    <div class="events-grid">
+      <article class="event-card ev1">
+        <div class="event-bg" aria-hidden="true"></div>
+        <div class="event-overlay" aria-hidden="true"></div>
+        <div class="event-content">
+          <span class="event-date">Jun 14 – Jun 30</span>
+          <h3 class="event-title serif">Summer Luxe<br>Fashion Week</h3>
+          <p class="event-desc">An immersive runway experience celebrating the season's finest collections from over 20 international designers.</p>
+          <a href="#" class="event-link" aria-label="Learn more about Summer Luxe Fashion Week">
+            Discover More
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </article>
+      <article class="event-card ev2">
+        <div class="event-bg" aria-hidden="true"></div>
+        <div class="event-overlay" aria-hidden="true"></div>
+        <div class="event-content">
+          <span class="event-date">Every Weekend</span>
+          <h3 class="event-title serif">Chef's Table Experience</h3>
+          <p class="event-desc">Exclusive dining with award-winning chefs. Limited seats — reserve now.</p>
+          <a href="#" class="event-link">Book Now <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+      </article>
+      <article class="event-card ev3">
+        <div class="event-bg" aria-hidden="true"></div>
+        <div class="event-overlay" aria-hidden="true"></div>
+        <div class="event-content">
+          <span class="event-date">Jul 01 – Aug 31</span>
+          <h3 class="event-title serif">Art &amp; Culture Exhibition</h3>
+          <p class="event-desc">Featuring works by Sri Lanka's most celebrated contemporary artists.</p>
+          <a href="#" class="event-link">Explore <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ── DINING ── -->
+<section class="dining" id="dining" aria-labelledby="dining-title">
+  <div class="container">
+    <div class="dining-layout">
+      <div class="dining-editorial">
+        <div class="dining-main-img" role="img" aria-label="Fine dining interior at Crescat"></div>
+        <div class="dining-inset" role="img" aria-label="Signature cocktails and cuisine"></div>
+      </div>
+      <div class="dining-text">
+        <p class="tag">Culinary Destination</p>
+        <h2 class="dining-title serif" id="dining-title">Extraordinary<br>Dining Awaits</h2>
+        <p class="dining-body">
+          From Michelin-starred concepts to vibrant street food, Crescat's dining quarter brings together the world's finest culinary traditions. Thirty destination restaurants across three dedicated levels.
+        </p>
+        <div class="dining-stats">
+          <div class="stat-item">
+            <div class="stat-num serif">30+</div>
+            <div class="stat-label">Restaurants</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num serif">15</div>
+            <div class="stat-label">Cuisines</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num serif">3</div>
+            <div class="stat-label">Floors</div>
+          </div>
+        </div>
+        <div style="display:flex; gap:16px; flex-wrap:wrap;">
+          <a href="#" class="btn-gold" role="button">Explore Dining</a>
+          <a href="#" class="btn-outline" role="button">Make a Reservation</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── OFFERS ── -->
+<section class="offers" id="offers" aria-labelledby="offers-title">
+  <div class="container">
+    <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:24px; flex-wrap:wrap;">
+      <div>
+        <p class="tag">Exclusive</p>
+        <h2 class="section-title serif" id="offers-title">Member Offers</h2>
+      </div>
+      <a href="#" class="btn-outline" role="button" style="margin-bottom:4px;">View All Offers</a>
+    </div>
+    <div class="offers-grid" role="list">
+      <article class="offer-card off1" role="listitem">
+        <div class="offer-img" role="img" aria-label="Fashion offer">
+          <span class="offer-badge">Up to 40% Off</span>
+        </div>
+        <div class="offer-body">
+          <p class="offer-category">Fashion</p>
+          <h3 class="offer-title serif">Summer Edit — New Season Arrivals</h3>
+          <p class="offer-detail">Discover the latest from leading fashion houses with exclusive member discounts this season.</p>
+          <div class="offer-footer">
+            <span class="offer-store">Multiple Stores</span>
+            <a href="#" class="offer-action" aria-label="Shop Fashion offer">
+              Shop Now <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+      </article>
+      <article class="offer-card off2" role="listitem">
+        <div class="offer-img" role="img" aria-label="Dining offer">
+          <span class="offer-badge">Complimentary</span>
+        </div>
+        <div class="offer-body">
+          <p class="offer-category">Dining</p>
+          <h3 class="offer-title serif">Dessert on Us — Dine &amp; Indulge</h3>
+          <p class="offer-detail">Enjoy a complimentary dessert with any main course at participating restaurants. Valid weekdays only.</p>
+          <div class="offer-footer">
+            <span class="offer-store">12 Restaurants</span>
+            <a href="#" class="offer-action" aria-label="Book Dining offer">
+              Book Now <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+      </article>
+      <article class="offer-card off3" role="listitem">
+        <div class="offer-img" role="img" aria-label="Wellness offer">
+          <span class="offer-badge">Members Only</span>
+        </div>
+        <div class="offer-body">
+          <p class="offer-category">Wellness</p>
+          <h3 class="offer-title serif">Spa Day Package — Total Rejuvenation</h3>
+          <p class="offer-detail">Curated wellness experiences with exclusive access to premium spa treatments and facilities.</p>
+          <div class="offer-footer">
+            <span class="offer-store">Crescat Spa</span>
+            <a href="#" class="offer-action" aria-label="Redeem Wellness offer">
+              Redeem <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ── PLAN YOUR VISIT ── -->
+<section class="visit" id="visit" aria-labelledby="visit-title">
+  <div class="container">
+    <div class="section-header">
+      <p class="tag" style="color:var(--gold)">Plan Your Visit</p>
+      <h2 class="section-title serif" id="visit-title">Everything You Need</h2>
+    </div>
+    <div class="visit-grid" role="list">
+      <div class="visit-card" role="listitem" tabindex="0">
+        <div class="visit-icon" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        </div>
+        <p class="visit-label">Hours</p>
+        <h3 class="visit-title serif">Open Daily</h3>
+        <p class="visit-detail">Monday – Sunday<br>10:00 AM – 10:00 PM<br>Extended hours on holidays</p>
+      </div>
+      <div class="visit-card" role="listitem" tabindex="0">
+        <div class="visit-icon" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+        </div>
+        <p class="visit-label">Location</p>
+        <h3 class="visit-title serif">Colombo 3</h3>
+        <p class="visit-detail">89 Galle Road<br>Kollupitiya, Colombo 03<br>Sri Lanka</p>
+      </div>
+      <div class="visit-card" role="listitem" tabindex="0">
+        <div class="visit-icon" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="6" width="20" height="14" rx="2"/><path d="M16 6V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><path d="M12 12v4"/><path d="M8 12h8"/></svg>
+        </div>
+        <p class="visit-label">Parking</p>
+        <h3 class="visit-title serif">Free Valet</h3>
+        <p class="visit-detail">Complimentary valet parking<br>for all guests. 1,200 spaces<br>across 4 levels</p>
+      </div>
+      <div class="visit-card" role="listitem" tabindex="0">
+        <div class="visit-icon" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.63A2 2 0 012 .99h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+        </div>
+        <p class="visit-label">Contact</p>
+        <h3 class="visit-title serif">Get in Touch</h3>
+        <p class="visit-detail">+94 11 254 1010<br>hello@crescat.lk<br>Concierge: Level 2</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── NEWSLETTER ── -->
+<section class="newsletter" aria-labelledby="nl-title">
+  <div class="container">
+    <div class="nl-inner">
+      <p class="tag" style="margin:0 auto 16px; display:block; text-align:center;">Stay Connected</p>
+      <h2 class="nl-title serif" id="nl-title">Join the <em>Inner Circle</em></h2>
+      <p class="nl-sub">
+        Be first to hear about exclusive events, new arrivals, member offers, and curated experiences tailored to you.
+      </p>
+      <form class="nl-form" novalidate aria-label="Newsletter signup">
+        <label for="nl-email" class="sr-only" style="position:absolute;clip:rect(0,0,0,0)">Email address</label>
+        <input class="nl-input" type="email" id="nl-email" name="email" placeholder="Your email address" autocomplete="email" required>
+        <button class="nl-btn" type="submit">Subscribe</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer role="contentinfo">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-logo serif">Crescat</div>
+        <div class="footer-logo-sub">Premium Lifestyle Destination</div>
+        <p class="footer-desc">
+          Colombo's most prestigious shopping and lifestyle destination. Over 200 world-class brands across fashion, dining, entertainment and wellness.
+        </p>
+        <div class="footer-socials" role="list" aria-label="Social media links">
+          <a class="social-btn" href="#" role="listitem" aria-label="Instagram">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+          </a>
+          <a class="social-btn" href="#" role="listitem" aria-label="Facebook">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+          </a>
+          <a class="social-btn" href="#" role="listitem" aria-label="Twitter / X">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4l16 16M4 20L20 4"/></svg>
+          </a>
+          <a class="social-btn" href="#" role="listitem" aria-label="YouTube">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 00-1.95 1.96A29 29 0 001 12a29 29 0 00.46 5.58A2.78 2.78 0 003.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.95A29 29 0 0023 12a29 29 0 00-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>
+          </a>
+        </div>
+      </div>
+      <nav aria-label="Shop navigation">
+        <p class="footer-col-title">Shop</p>
+        <ul class="footer-links">
+          <li><a href="#">Fashion &amp; Apparel</a></li>
+          <li><a href="#">Beauty &amp; Wellness</a></li>
+          <li><a href="#">Home &amp; Living</a></li>
+          <li><a href="#">Tech &amp; Lifestyle</a></li>
+          <li><a href="#">Kids &amp; Toys</a></li>
+          <li><a href="#">Store Directory</a></li>
+        </ul>
+      </nav>
+      <nav aria-label="Explore navigation">
+        <p class="footer-col-title">Explore</p>
+        <ul class="footer-links">
+          <li><a href="#">Dining Guide</a></li>
+          <li><a href="#">Events &amp; Experiences</a></li>
+          <li><a href="#">Offers &amp; Promotions</a></li>
+          <li><a href="#">Gift Cards</a></li>
+          <li><a href="#">Loyalty Programme</a></li>
+          <li><a href="#">Crescat Cinema</a></li>
+        </ul>
+      </nav>
+      <nav aria-label="Visit navigation">
+        <p class="footer-col-title">Visit</p>
+        <ul class="footer-links">
+          <li><a href="#">Getting Here</a></li>
+          <li><a href="#">Parking &amp; Valet</a></li>
+          <li><a href="#">Opening Hours</a></li>
+          <li><a href="#">Accessibility</a></li>
+          <li><a href="#">Concierge</a></li>
+          <li><a href="#">Contact Us</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">&copy; 2025 Crescat Boulevard. All rights reserved.</p>
+      <ul class="footer-legal">
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Use</a></li>
+        <li><a href="#">Cookie Settings</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+<!-- ── FLOATING PROMO ── -->
+<div class="promo-bar" role="dialog" aria-label="Exclusive offer" aria-live="polite">
+  <span class="promo-close" role="button" tabindex="0" aria-label="Close offer" onclick="this.parentElement.style.display='none'">&times;</span>
+  <p class="promo-label">Members Only</p>
+  <p class="promo-text serif">20% off your first purchase today</p>
+  <a href="#" class="promo-cta" aria-label="Join Crescat rewards">
+    Join Rewards
+    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+  </a>
+</div>
+
+<script>
+  /* Promo bar close via keyboard */
+  document.querySelector('.promo-close').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter' || e.key === ' ') this.click();
+  });
+
+  /* Nav: transparent on hero, dark elsewhere */
+  const nav = document.querySelector('nav');
+  const observer = new IntersectionObserver(
+    ([entry]) => nav.style.borderBottomColor = entry.isIntersecting ? 'rgba(201,168,76,0.08)' : 'rgba(201,168,76,0.2)',
+    { threshold: 0.1 }
+  );
+  observer.observe(document.querySelector('.hero'));
+</script>
+</body>
+</html>

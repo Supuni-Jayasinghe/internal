@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Crescat Boulevard — Figma Design Spec</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;background:#F7F5FA;color:#120820;font-size:14px;line-height:1.6}
+
+/* ── Layout ── */
+.wrap{max-width:1080px;margin:0 auto;padding:0 40px 80px}
+header{background:#2D0A4E;padding:52px 40px;margin-bottom:0}
+header h1{font-family:'Playfair Display',serif;font-size:42px;font-weight:400;color:#fff;margin-bottom:6px}
+header h1 em{font-style:italic;color:#F0A830}
+header p{font-size:13px;color:rgba(255,255,255,.45);letter-spacing:.06em}
+.meta{background:#1A0530;padding:14px 40px;border-bottom:3px solid #D4860A;display:flex;gap:32px;flex-wrap:wrap;margin-bottom:48px}
+.meta-item{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.4)}
+.meta-item span{color:#F0A830;margin-left:6px}
+
+/* ── Section headings ── */
+.sec{margin-bottom:52px}
+.sec-title{font-family:'Playfair Display',serif;font-size:22px;font-weight:500;color:#2D0A4E;margin-bottom:4px;padding-bottom:10px;border-bottom:2px solid #D4860A;display:flex;align-items:center;gap:10px}
+.sec-title .num{width:28px;height:28px;background:#D4860A;color:#fff;font-family:'Inter',sans-serif;font-size:12px;font-weight:700;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sec-sub{font-size:12px;color:#6E6480;margin-bottom:24px;margin-top:6px}
+
+/* ── Tables ── */
+table{width:100%;border-collapse:collapse;margin-bottom:16px}
+th{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#6E6480;font-weight:600;padding:9px 12px;text-align:left;background:#F0ECF6;border-bottom:1px solid #E0D8EE}
+td{padding:10px 12px;border-bottom:1px solid #F0ECF6;font-size:13px;vertical-align:top}
+tr:hover td{background:#FAF8FC}
+td code{font-family:monospace;font-size:12px;background:#F0ECF6;padding:2px 6px;border-radius:3px;color:#5B1F8C}
+
+/* ── Color swatches ── */
+.swatches{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px;margin-bottom:8px}
+.swatch{border-radius:6px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.09)}
+.swatch-color{height:72px}
+.swatch-info{padding:10px;background:#fff;border:1px solid #F0ECF6;border-top:none}
+.swatch-name{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#3D3548;margin-bottom:2px}
+.swatch-hex{font-family:monospace;font-size:12px;color:#6E6480}
+.swatch-role{font-size:10px;color:#A89EBA;margin-top:2px}
+
+/* ── Type specimens ── */
+.type-specimen{background:#fff;border:1px solid #F0ECF6;border-radius:8px;padding:24px;margin-bottom:12px}
+.type-label{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#D4860A;margin-bottom:10px;font-weight:600}
+.specimen-row{display:flex;align-items:baseline;gap:20px;flex-wrap:wrap}
+.specimen-size{font-size:10px;color:#A89EBA;min-width:56px;text-align:right;flex-shrink:0}
+
+/* ── Component cards ── */
+.comp-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:8px}
+.comp-card{background:#fff;border:1px solid #F0ECF6;border-radius:8px;padding:20px}
+.comp-card h4{font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#2D0A4E;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid #F0ECF6}
+.prop{display:flex;justify-content:space-between;gap:8px;margin-bottom:7px;font-size:12px}
+.prop-key{color:#6E6480;flex-shrink:0}
+.prop-val{font-family:monospace;font-size:11.5px;color:#120820;text-align:right}
+
+/* ── Spacing scale ── */
+.spacing-row{display:flex;align-items:center;gap:16px;margin-bottom:10px}
+.spacing-bar-wrap{flex:1;background:#F0ECF6;border-radius:3px;height:28px;position:relative;overflow:hidden}
+.spacing-bar{height:100%;background:linear-gradient(90deg,#5B1F8C,#D4860A);border-radius:3px}
+.spacing-label{font-size:12px;color:#6E6480;min-width:48px}
+.spacing-px{font-family:monospace;font-size:12px;color:#2D0A4E;min-width:48px;text-align:right}
+
+/* ── Grid diagrams ── */
+.grid-diagram{background:#fff;border:1px solid #F0ECF6;border-radius:8px;padding:24px;margin-bottom:12px}
+.grid-diagram h4{font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#2D0A4E;margin-bottom:14px}
+.grid-vis{display:flex;gap:3px;height:60px;border-radius:4px;overflow:hidden}
+.grid-col{background:rgba(91,31,140,.12);border:1px dashed rgba(91,31,140,.25);border-radius:2px;flex:1;display:flex;align-items:center;justify-content:center;font-size:9px;color:rgba(91,31,140,.5);font-weight:600}
+.grid-col.span-2{flex:2}
+.grid-col.span-5{flex:5}
+.grid-col.span-4{flex:4}
+
+/* ── Preview panels ── */
+.preview{border-radius:8px;overflow:hidden;margin-bottom:12px}
+.preview-dark{background:#2D0A4E;padding:24px}
+.preview-light{background:#FAF8FC;padding:24px;border:1px solid #F0ECF6}
+
+/* ── Shadow / border tokens ── */
+.effect-row{background:#fff;border:1px solid #F0ECF6;border-radius:8px;padding:16px 20px;margin-bottom:8px;display:flex;align-items:center;gap:20px}
+.effect-sample{width:80px;height:48px;border-radius:6px;background:#fff;flex-shrink:0}
+.effect-info{flex:1}
+.effect-name{font-size:12px;font-weight:600;color:#2D0A4E;margin-bottom:2px}
+.effect-val{font-family:monospace;font-size:11px;color:#6E6480}
+
+/* ── Icon grid ── */
+.icon-note{background:#FDF3E3;border-left:3px solid #D4860A;padding:12px 16px;border-radius:0 6px 6px 0;font-size:12px;color:#3D3548;margin-bottom:16px}
+
+/* ── Handoff notes ── */
+.handoff{background:#1A0530;border-radius:8px;padding:24px;color:#fff;margin-bottom:16px}
+.handoff h4{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#D4860A;margin-bottom:12px;font-weight:600}
+.handoff li{font-size:12px;color:rgba(255,255,255,.6);margin-bottom:7px;padding-left:14px;position:relative}
+.handoff li::before{content:'→';position:absolute;left:0;color:#D4860A}
+
+/* ── Tag ── */
+.chip{display:inline-block;font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:3px 9px;border-radius:20px;margin:2px}
+.chip-p{background:#F3EEF9;color:#5B1F8C}
+.chip-a{background:#FDF3E3;color:#8A5010}
+.chip-g{background:#F0F9F4;color:#1A6B3A}
+
+@media(max-width:700px){
+  .wrap{padding:0 16px 48px}
+  header{padding:32px 16px}
+  .meta{padding:12px 16px;gap:16px}
+  .comp-grid{grid-template-columns:1fr}
+  .swatches{grid-template-columns:repeat(3,1fr)}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Crescat Boulevard — <em>Design Spec</em></h1>
+  <p>Figma-ready design system · Prototype v4 · June 2026</p>
+</header>
+<div class="meta">
+  <div class="meta-item">Brand<span>Crescat Boulevard</span></div>
+  <div class="meta-item">Version<span>4.0</span></div>
+  <div class="meta-item">Style<span>Editorial Luxury</span></div>
+  <div class="meta-item">Grid<span>1340px max-width · 40px gutter</span></div>
+  <div class="meta-item">Breakpoints<span>480 / 768 / 1100 / 1340px</span></div>
+</div>
+
+<div class="wrap">
+
+<!-- ══ 1. COLOR TOKENS ══ -->
+<div class="sec">
+  <div class="sec-title"><div class="num">1</div>Color Tokens</div>
+  <div class="sec-sub">All colors are defined as CSS custom properties. Reference these names in Figma as local styles.</div>
+
+  <div class="swatches">
+    <div class="swatch">
+      <div class="swatch-color" style="background:#2D0A4E"></div>
+      <div class="swatch-info"><div class="swatch-name">Purple Deep</div><div class="swatch-hex">#2D0A4E</div><div class="swatch-role">--purple-deep · Brand anchor, nav BG, dark sections</div></div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#5B1F8C"></div>
+      <div class="swatch-info"><div class="swatch-name">Purple Mid</div><div class="swatch-hex">#5B1F8C</div><div class="swatch-role">--purple-mid · Primary CTA (purple), accents</div></div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#7B3FB2"></div>
+      <div class="swatch-info"><div class="swatch-name">Purple Soft</div><div class="swatch-hex">#7B3FB2</div><div class="swatch-role">--purple-soft · Hover state of purple buttons</div></div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#F3EEF9;border:1px solid #E0D8EE"></div>
+      <div class="swatch-info"><div class="swatch-name">Purple Pale</div><div class="swatch-hex">#F3EEF9</div><div class="swatch-role">--purple-pale · Light tinted backgrounds</div></div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#D4860A"></div>
+      <div class="swatch-info"><div class="swatch-name">Amber</div><div class="swatch-hex">#D4860A</div><div class="swatch-role">--amber · Logo bar, CTAs, underlines, badges</div></div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#F0A830"></div>
+      <div class="swatch-info"><div class="swatch-name">Amber Light</div><div class="swatch-hex">#F0A830</div><div class="swatch-role">--amber-light · Hover amber, hero stat numbers</div></div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#FDF3E3;border:1px solid #EEE0C4"></div>
+      <div class="swatch-info"><div class="swatch-name">Amber Pale</div><div class="swatch-hex">#FDF3E3</div><div class="swatch-role">--amber-pale · Visit section background</div></div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#120820"></div>
+      <div class="swatch-info"><div class="swatch-name">Ink</div><div class="swatch-hex">#120820</div><div class="swatch-role">--ink · Body text, Events section BG</div></div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#3D3548"></div>
+      <div class="swatch-info"><div class="swatch-name">Stone</div><div class="swatch-hex">#3D3548</div><div class="swatch-role">--stone · Brand tile text, secondary text</div></div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#6E6480"></div>
+      <div class="swatch-info"><div class="swatch-name">Stone Mid</div><div class="swatch-hex">#6E6480</div><div class="swatch-role">--stone-mid · Body copy, descriptions</div></div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#FAF8FC;border:1px solid #E0D8EE"></div>
+      <div class="swatch-info"><div class="swatch-name">Cream</div><div class="swatch-hex">#FAF8FC</div><div class="swatch-role">--cream · Page background</div></div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#F0ECF6;border:1px solid #E0D8EE"></div>
+      <div class="swatch-info"><div class="swatch-name">Cream Mid</div><div class="swatch-hex">#F0ECF6</div><div class="swatch-role">--cream-mid · Dividers, stat borders</div></div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#FFFFFF;border:1px solid #E0D8EE"></div>
+      <div class="swatch-info"><div class="swatch-name">White</div><div class="swatch-hex">#FFFFFF</div><div class="swatch-role">White · Card & brand tile backgrounds</div></div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#080410"></div>
+      <div class="swatch-info"><div class="swatch-name">Near Black</div><div class="swatch-hex">#080410</div><div class="swatch-role">Footer background</div></div>
+    </div>
+  </div>
+
+  <table style="margin-top:20px">
+    <thead><tr><th>Token Name</th><th>Value</th><th>Figma Style Name</th><th>Usage</th></tr></thead>
+    <tbody>
+      <tr><td><code>--purple-deep</code></td><td>#2D0A4E</td><td>Brand/Purple Deep</td><td>Nav, dark section backgrounds, footer</td></tr>
+      <tr><td><code>--purple-mid</code></td><td>#5B1F8C</td><td>Brand/Purple Mid</td><td>Purple CTA button, links, stat numbers</td></tr>
+      <tr><td><code>--purple-soft</code></td><td>#7B3FB2</td><td>Brand/Purple Soft</td><td>Button hover state</td></tr>
+      <tr><td><code>--purple-pale</code></td><td>#F3EEF9</td><td>Brand/Purple Pale</td><td>Light section tints</td></tr>
+      <tr><td><code>--amber</code></td><td>#D4860A</td><td>Brand/Amber</td><td>Logo bar, primary CTA, underlines, badges</td></tr>
+      <tr><td><code>--amber-light</code></td><td>#F0A830</td><td>Brand/Amber Light</td><td>Hover states, hero stat numbers, links on dark</td></tr>
+      <tr><td><code>--amber-pale</code></td><td>#FDF3E3</td><td>Brand/Amber Pale</td><td>Visit section bg</td></tr>
+      <tr><td><code>--ink</code></td><td>#120820</td><td>Text/Ink</td><td>Primary body text, Events section background</td></tr>
+      <tr><td><code>--stone</code></td><td>#3D3548</td><td>Text/Stone</td><td>Secondary headings on light</td></tr>
+      <tr><td><code>--stone-mid</code></td><td>#6E6480</td><td>Text/Stone Mid</td><td>Body copy, descriptions, captions</td></tr>
+      <tr><td><code>--stone-pale</code></td><td>#A89EBA</td><td>Text/Stone Pale</td><td>Placeholder text, muted labels</td></tr>
+      <tr><td><code>--cream</code></td><td>#FAF8FC</td><td>Surface/Cream</td><td>Page background</td></tr>
+      <tr><td><code>--cream-mid</code></td><td>#F0ECF6</td><td>Surface/Cream Mid</td><td>Dividers, borders on light</td></tr>
+      <tr><td><code>--white</code></td><td>#FFFFFF</td><td>Surface/White</td><td>Cards, brand tiles</td></tr>
+    </tbody>
+  </table>
+
+  <div style="margin-top:20px">
+    <p style="font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#6E6480;margin-bottom:12px">Gradient Definitions</p>
+    <table>
+      <thead><tr><th>Name</th><th>CSS Value</th><th>Used In</th></tr></thead>
+      <tbody>
+        <tr><td>Hero Left Panel</td><td><code>linear-gradient(160deg, #1A0530 0%, #2D0A4E 60%, #120820 100%)</code></td><td>Slide 1 left half</td></tr>
+        <tr><td>Hero Right Panel</td><td><code>linear-gradient(160deg, #3D0F6A 0%, #5B1F8C 50%, #2D0A4E 100%)</code></td><td>Slide 2 bg</td></tr>
+        <tr><td>Hero Slide 3</td><td><code>linear-gradient(160deg, #1A0820 0%, #2D0A4E 45%, #4A1880 100%)</code></td><td>Slide 3 bg</td></tr>
+        <tr><td>Newsletter</td><td><code>linear-gradient(135deg, #2D0A4E 0%, #1A0530 40%, #120820 80%, #1A0A04 100%)</code></td><td>Newsletter section</td></tr>
+        <tr><td>Vignette Overlay</td><td><code>linear-gradient(to top, rgba(18,8,32,.85) 0%, rgba(18,8,32,.05) 55%)</code></td><td>Category card overlays</td></tr>
+        <tr><td>Nav Scrolled</td><td><code>rgba(18, 8, 32, 0.96)</code> + backdrop-filter: blur(16px)</td><td>Fixed nav background</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ══ 2. TYPOGRAPHY ══ -->
+<div class="sec">
+  <div class="sec-title"><div class="num">2</div>Typography System</div>
+  <div class="sec-sub">Three font families. Playfair Display for editorial headings, Inter for UI/body, Dancing Script for the brand logo only.</div>
+
+  <table style="margin-bottom:24px">
+    <thead><tr><th>Role</th><th>Font</th><th>Weights</th><th>Where Used</th></tr></thead>
+    <tbody>
+      <tr><td>Brand Logo</td><td>Dancing Script</td><td>700</td><td>Nav logo, footer logo — logo only</td></tr>
+      <tr><td>Display / H1</td><td>Playfair Display</td><td>400 (regular + italic)</td><td>Hero headline, section titles</td></tr>
+      <tr><td>Heading / H2–H3</td><td>Playfair Display</td><td>400, 500</td><td>Card titles, dining headline</td></tr>
+      <tr><td>UI / Body</td><td>Inter</td><td>200, 300, 400, 500, 600</td><td>All body copy, nav links, labels, buttons</td></tr>
+    </tbody>
+  </table>
+
+  <div class="type-specimen">
+    <div class="type-label">Display — Playfair Display 400 Italic · clamp(52px, 6.5vw, 92px)</div>
+    <div style="font-family:'Playfair Display',serif;font-size:clamp(40px,5vw,72px);font-weight:400;color:#120820;line-height:1.02">
+      Indulge, <em style="color:#D4860A">Explore,</em> Experience
+    </div>
+  </div>
+
+  <div class="type-specimen">
+    <div class="type-label">H2 Section Title — Playfair Display 400 · clamp(34px, 3.5vw, 54px)</div>
+    <div style="font-family:'Playfair Display',serif;font-size:clamp(28px,3vw,44px);font-weight:400;color:#120820;line-height:1.1">
+      Discover Your World
+    </div>
+  </div>
+
+  <div class="type-specimen">
+    <div class="type-label">H2 Italic Accent — Playfair Display 400 · clamp(32px, 3vw, 50px)</div>
+    <div style="font-family:'Playfair Display',serif;font-size:clamp(26px,2.5vw,40px);font-weight:400;color:#120820;line-height:1.12">
+      <em style="font-style:italic;color:#5B1F8C">Extraordinary</em> Dining Awaits
+    </div>
+  </div>
+
+  <div class="type-specimen">
+    <div class="type-label">Hero Tagline — Playfair Display Italic 400 · clamp(18px, 2vw, 26px)</div>
+    <div style="font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(16px,2vw,22px);font-weight:400;color:rgba(18,8,32,.55);line-height:1.4">
+      The Heart of Convenience
+    </div>
+  </div>
+
+  <div class="type-specimen">
+    <div class="type-label">Brand Logo — Dancing Script 700 · 28px (nav) / 30px (footer)</div>
+    <div style="font-family:'Dancing Script',cursive;font-size:40px;font-weight:700;color:#2D0A4E;line-height:1">
+      Crescat
+    </div>
+  </div>
+
+  <table style="margin-top:24px">
+    <thead><tr><th>Style</th><th>Font</th><th>Size</th><th>Weight</th><th>Letter Spacing</th><th>Line Height</th><th>Color</th></tr></thead>
+    <tbody>
+      <tr><td>Display H1</td><td>Playfair Display</td><td>clamp(52px, 6.5vw, 92px)</td><td>400</td><td>0</td><td>1.02</td><td>--white on dark / --ink on light</td></tr>
+      <tr><td>Section H2</td><td>Playfair Display</td><td>clamp(34px, 3.5vw, 54px)</td><td>400</td><td>0</td><td>1.1</td><td>--ink</td></tr>
+      <tr><td>Dining H2</td><td>Playfair Display</td><td>clamp(32px, 3vw, 50px)</td><td>400</td><td>0</td><td>1.12</td><td>--ink</td></tr>
+      <tr><td>Event Card H3</td><td>Playfair Display</td><td>28px (small: 40px featured)</td><td>500</td><td>0</td><td>1.15</td><td>--white</td></tr>
+      <tr><td>Offer Card H3</td><td>Playfair Display</td><td>20px</td><td>500</td><td>0</td><td>1.25</td><td>--ink</td></tr>
+      <tr><td>Visit Card H3</td><td>Playfair Display</td><td>20px</td><td>500</td><td>0</td><td>1.2</td><td>--white</td></tr>
+      <tr><td>Brand Tile</td><td>Playfair Display</td><td>17px</td><td>500</td><td>0.06em</td><td>1.2</td><td>--stone</td></tr>
+      <tr><td>Logo (nav)</td><td>Dancing Script</td><td>28px</td><td>700</td><td>-0.01em</td><td>1</td><td>--white</td></tr>
+      <tr><td>Logo (footer)</td><td>Dancing Script</td><td>30px</td><td>700</td><td>0</td><td>1</td><td>--white</td></tr>
+      <tr><td>Logo Bar</td><td>Inter</td><td>8.5px</td><td>700</td><td>0.22em</td><td>1</td><td>--white on --amber</td></tr>
+      <tr><td>Body Copy</td><td>Inter</td><td>13px</td><td>300</td><td>0</td><td>1.85</td><td>--stone-mid</td></tr>
+      <tr><td>Hero Body</td><td>Inter</td><td>13px</td><td>300</td><td>0</td><td>1.75</td><td>rgba(255,255,255,.55)</td></tr>
+      <tr><td>Nav Links</td><td>Inter</td><td>11px</td><td>500</td><td>0.1em</td><td>1</td><td>rgba(255,255,255,.65)</td></tr>
+      <tr><td>Button</td><td>Inter</td><td>11px</td><td>600</td><td>0.14em</td><td>1</td><td>--white</td></tr>
+      <tr><td>Tag / Eyebrow</td><td>Inter</td><td>10px</td><td>600</td><td>0.22em</td><td>1</td><td>--amber</td></tr>
+      <tr><td>Label / Cap</td><td>Inter</td><td>9–10px</td><td>600</td><td>0.18–0.22em</td><td>1</td><td>--stone-mid or rgba(255,255,255,.35)</td></tr>
+      <tr><td>Footer Links</td><td>Inter</td><td>12px</td><td>300</td><td>0</td><td>1</td><td>rgba(255,255,255,.4)</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ══ 3. SPACING SCALE ══ -->
+<div class="sec">
+  <div class="sec-title"><div class="num">3</div>Spacing Scale</div>
+  <div class="sec-sub">8px base unit. All spacing is a multiple of 4 or 8px. Section padding uses 88–96px vertically.</div>
+
+  <table>
+    <thead><tr><th>Token</th><th>px</th><th>rem</th><th>Used For</th></tr></thead>
+    <tbody>
+      <tr><td><code>space-2</code></td><td>2px</td><td>0.125rem</td><td>Logo bar top offset, thin gaps</td></tr>
+      <tr><td><code>space-3</code></td><td>3px</td><td>0.1875rem</td><td>Cat grid gap, events grid gap</td></tr>
+      <tr><td><code>space-4</code></td><td>4px</td><td>0.25rem</td><td>Logo tagline margin, tag bottom</td></tr>
+      <tr><td><code>space-8</code></td><td>8px</td><td>0.5rem</td><td>Logo bar padding, button icon gap</td></tr>
+      <tr><td><code>space-10</code></td><td>10px</td><td>0.625rem</td><td>Nav link gap (between links)</td></tr>
+      <tr><td><code>space-12</code></td><td>12px</td><td>0.75rem</td><td>Section sub margin-top</td></tr>
+      <tr><td><code>space-14</code></td><td>14px</td><td>0.875rem</td><td>Button gap (ghost), info-item gap</td></tr>
+      <tr><td><code>space-16</code></td><td>16px</td><td>1rem</td><td>Button gaps, card body padding</td></tr>
+      <tr><td><code>space-20</code></td><td>20px</td><td>1.25rem</td><td>Offer grid gap, visit icon margin</td></tr>
+      <tr><td><code>space-22</code></td><td>22px</td><td>1.375rem</td><td>Hero eyebrow margin-bottom</td></tr>
+      <tr><td><code>space-24</code></td><td>24px</td><td>1.5rem</td><td>Cat arrow position, offer body padding</td></tr>
+      <tr><td><code>space-28</code></td><td>28px</td><td>1.75rem</td><td>Category overlay padding</td></tr>
+      <tr><td><code>space-36</code></td><td>36px</td><td>2.25rem</td><td>Brands grid top margin</td></tr>
+      <tr><td><code>space-40</code></td><td>40px</td><td>2.5rem</td><td>Container horizontal padding, nav padding</td></tr>
+      <tr><td><code>space-48</code></td><td>48px</td><td>3rem</td><td>Footer grid gap (bottom)</td></tr>
+      <tr><td><code>space-52</code></td><td>52px</td><td>3.25rem</td><td>Section-hd margin-bottom</td></tr>
+      <tr><td><code>space-64</code></td><td>64px</td><td>4rem</td><td>Footer top padding</td></tr>
+      <tr><td><code>space-72</code></td><td>72px</td><td>4.5rem</td><td>Dining wrap gap</td></tr>
+      <tr><td><code>space-88</code></td><td>88px</td><td>5.5rem</td><td>Section vertical padding (standard)</td></tr>
+      <tr><td><code>space-96</code></td><td>96px</td><td>6rem</td><td>Newsletter vertical padding</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ══ 4. LAYOUT GRIDS ══ -->
+<div class="sec">
+  <div class="sec-title"><div class="num">4</div>Layout Grids</div>
+  <div class="sec-sub">Container max-width 1340px, 40px horizontal padding both sides. All grids collapse at breakpoints.</div>
+
+  <div class="grid-diagram">
+    <h4>Category Grid — Desktop (5 columns, variable width)</h4>
+    <div class="grid-vis">
+      <div class="grid-col span-2" style="flex:2">Fashion (2fr)</div>
+      <div class="grid-col">Dining (1fr)</div>
+      <div class="grid-col">Beauty (1fr)</div>
+      <div class="grid-col">Living (1fr)</div>
+      <div class="grid-col">Tech (1fr)</div>
+    </div>
+    <p style="font-size:11px;color:#6E6480;margin-top:10px">Height: 640px · Gap: 3px · First child spans 2 rows · Collapses to 3-col at 1100px, 2-col at 480px</p>
+  </div>
+
+  <div class="grid-diagram">
+    <h4>Events Grid — Desktop (5fr + 4fr)</h4>
+    <div class="grid-vis">
+      <div class="grid-col span-5" style="flex:5">Featured Event (5fr) · min-height 380px</div>
+      <div class="grid-col span-4" style="flex:4;display:flex;flex-direction:column;gap:3px">
+        <div style="flex:1;background:rgba(91,31,140,.12);border:1px dashed rgba(91,31,140,.25);border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:9px;color:rgba(91,31,140,.5)">Event 2</div>
+        <div style="flex:1;background:rgba(91,31,140,.12);border:1px dashed rgba(91,31,140,.25);border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:9px;color:rgba(91,31,140,.5)">Event 3</div>
+      </div>
+    </div>
+    <p style="font-size:11px;color:#6E6480;margin-top:10px">Gap: 3px · Stacked right cards min-height 190px each · Collapses to 1 column at 1100px</p>
+  </div>
+
+  <div class="grid-diagram">
+    <h4>Brands Grid — Desktop (6 columns)</h4>
+    <div class="grid-vis">
+      <div class="grid-col">Cartier</div>
+      <div class="grid-col">L. Vuitton</div>
+      <div class="grid-col">Zara</div>
+      <div class="grid-col">Rolex</div>
+      <div class="grid-col">Apple</div>
+      <div class="grid-col">Bulgari</div>
+    </div>
+    <p style="font-size:11px;color:#6E6480;margin-top:10px">Gap: 2px · Min-height 100px per tile · 4-col at 1100px, 3-col at 768px</p>
+  </div>
+
+  <div class="grid-diagram">
+    <h4>Offers Grid — Desktop (3 columns equal)</h4>
+    <div class="grid-vis">
+      <div class="grid-col">Fashion Offer</div>
+      <div class="grid-col">Dining Offer</div>
+      <div class="grid-col">Wellness Offer</div>
+    </div>
+    <p style="font-size:11px;color:#6E6480;margin-top:10px">Gap: 20px · Collapses to 1 column at 768px</p>
+  </div>
+
+  <div class="grid-diagram">
+    <h4>Visit Grid — Desktop (4 columns equal)</h4>
+    <div class="grid-vis">
+      <div class="grid-col">Hours</div>
+      <div class="grid-col">Location</div>
+      <div class="grid-col">Parking</div>
+      <div class="grid-col">Contact</div>
+    </div>
+    <p style="font-size:11px;color:#6E6480;margin-top:10px">Gap: 2px · 2-col at 768px, 1-col at 480px</p>
+  </div>
+
+  <div class="grid-diagram">
+    <h4>Footer Grid — Desktop (2.2fr + 1fr + 1fr + 1fr)</h4>
+    <div class="grid-vis">
+      <div class="grid-col span-2" style="flex:2.2">Brand Column (2.2fr)</div>
+      <div class="grid-col">Shop (1fr)</div>
+      <div class="grid-col">Explore (1fr)</div>
+      <div class="grid-col">Visit (1fr)</div>
+    </div>
+    <p style="font-size:11px;color:#6E6480;margin-top:10px">Gap: 48px · 2-col at 1100px, 1-col at 768px</p>
+  </div>
+
+  <table style="margin-top:20px">
+    <thead><tr><th>Breakpoint</th><th>Name</th><th>Key Changes</th></tr></thead>
+    <tbody>
+      <tr><td><code>1340px</code></td><td>Desktop XL</td><td>Container max-width reached, centered</td></tr>
+      <tr><td><code>1100px</code></td><td>Desktop</td><td>Cat grid → 3-col, events → 1-col, dining → 1-col, footer → 2-col</td></tr>
+      <tr><td><code>768px</code></td><td>Tablet / Mobile</td><td>Nav links hidden, hamburger shown, offers → 1-col, visit → 2-col, footer → 1-col</td></tr>
+      <tr><td><code>480px</code></td><td>Mobile</td><td>Cat grid → 2-col, visit → 1-col, buttons stack vertically</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ══ 5. COMPONENT SPECS ══ -->
+<div class="sec">
+  <div class="sec-title"><div class="num">5</div>Component Specifications</div>
+  <div class="sec-sub">Exact dimensions, colors, and behaviour for every reusable component. Build each as a Figma component with variants.</div>
+
+  <!-- Nav -->
+  <p style="font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#D4860A;margin-bottom:10px">Navigation Bar</p>
+  <div class="comp-grid">
+    <div class="comp-card">
+      <h4>Container</h4>
+      <div class="prop"><span class="prop-key">Position</span><span class="prop-val">fixed, top-0, full width</span></div>
+      <div class="prop"><span class="prop-key">Height</span><span class="prop-val">76px (64px mobile)</span></div>
+      <div class="prop"><span class="prop-key">Max Content Width</span><span class="prop-val">1340px, centered</span></div>
+      <div class="prop"><span class="prop-key">Horizontal Padding</span><span class="prop-val">40px L/R</span></div>
+      <div class="prop"><span class="prop-key">Background</span><span class="prop-val">rgba(18,8,32, 0.96)</span></div>
+      <div class="prop"><span class="prop-key">Backdrop Filter</span><span class="prop-val">blur(16px) saturate(1.6)</span></div>
+      <div class="prop"><span class="prop-key">Border Bottom</span><span class="prop-val">1px solid rgba(212,134,10, 0.2)</span></div>
+      <div class="prop"><span class="prop-key">Z-Index</span><span class="prop-val">1000</span></div>
+    </div>
+    <div class="comp-card">
+      <h4>Logo Lockup</h4>
+      <div class="prop"><span class="prop-key">Script Font</span><span class="prop-val">Dancing Script 700, 28px</span></div>
+      <div class="prop"><span class="prop-key">Script Color</span><span class="prop-val">#FFFFFF</span></div>
+      <div class="prop"><span class="prop-key">Bar Background</span><span class="prop-val">#D4860A (--amber)</span></div>
+      <div class="prop"><span class="prop-key">Bar Text</span><span class="prop-val">Inter 700, 8.5px, ls 0.22em, #FFF</span></div>
+      <div class="prop"><span class="prop-key">Bar Padding</span><span class="prop-val">2px 8px</span></div>
+      <div class="prop"><span class="prop-key">Bar Min Width</span><span class="prop-val">120px</span></div>
+      <div class="prop"><span class="prop-key">Bar Top Offset</span><span class="prop-val">-2px (overlaps script)</span></div>
+      <div class="prop"><span class="prop-key">Tagline Font</span><span class="prop-val">Playfair Display Italic 9px</span></div>
+    </div>
+    <div class="comp-card">
+      <h4>Desktop Nav Links</h4>
+      <div class="prop"><span class="prop-key">Font</span><span class="prop-val">Inter 500, 11px, ls 0.1em, uppercase</span></div>
+      <div class="prop"><span class="prop-key">Color Default</span><span class="prop-val">rgba(255,255,255, 0.65)</span></div>
+      <div class="prop"><span class="prop-key">Color Hover</span><span class="prop-val">#FFFFFF</span></div>
+      <div class="prop"><span class="prop-key">Underline (hover)</span><span class="prop-val">1px #D4860A, scaleX 0→1 (0.3s)</span></div>
+      <div class="prop"><span class="prop-key">Gap Between Links</span><span class="prop-val">28px</span></div>
+      <div class="prop"><span class="prop-key">Hidden At</span><span class="prop-val">≤768px</span></div>
+    </div>
+    <div class="comp-card">
+      <h4>Members Button (nav)</h4>
+      <div class="prop"><span class="prop-key">Font</span><span class="prop-val">Inter 600, 10px, ls 0.15em, uppercase</span></div>
+      <div class="prop"><span class="prop-key">Border</span><span class="prop-val">1px solid rgba(212,134,10, 0.6)</span></div>
+      <div class="prop"><span class="prop-key">Color</span><span class="prop-val">--amber-light (#F0A830)</span></div>
+      <div class="prop"><span class="prop-key">Padding</span><span class="prop-val">8px 20px</span></div>
+      <div class="prop"><span class="prop-key">Hover BG</span><span class="prop-val">--amber, text --ink</span></div>
+    </div>
+    <div class="comp-card">
+      <h4>Hamburger (mobile)</h4>
+      <div class="prop"><span class="prop-key">Visible At</span><span class="prop-val">≤768px</span></div>
+      <div class="prop"><span class="prop-key">Bar Size</span><span class="prop-val">22 × 1.5px</span></div>
+      <div class="prop"><span class="prop-key">Gap Between Bars</span><span class="prop-val">5px</span></div>
+      <div class="prop"><span class="prop-key">Color</span><span class="prop-val">rgba(255,255,255, 0.8)</span></div>
+      <div class="prop"><span class="prop-key">Open State</span><span class="prop-val">Bar 1: rotate 45°, Bar 2: opacity 0, Bar 3: rotate -45°</span></div>
+    </div>
+    <div class="comp-card">
+      <h4>Mobile Menu Overlay</h4>
+      <div class="prop"><span class="prop-key">Position</span><span class="prop-val">fixed, top = nav-height, full screen</span></div>
+      <div class="prop"><span class="prop-key">Background</span><span class="prop-val">rgba(18,8,32, 0.98)</span></div>
+      <div class="prop"><span class="prop-key">Z-Index</span><span class="prop-val">900</span></div>
+      <div class="prop"><span class="prop-key">Padding</span><span class="prop-val">32px 40px</span></div>
+      <div class="prop"><span class="prop-key">Link Font</span><span class="prop-val">Inter 500, 15px, ls 0.12em, uppercase</span></div>
+      <div class="prop"><span class="prop-key">Link Color</span><span class="prop-val">rgba(255,255,255, 0.6) → hover --amber-light</span></div>
+      <div class="prop"><span class="prop-key">Link Border</span><span class="prop-val">1px solid rgba(255,255,255, 0.06) bottom</span></div>
+      <div class="prop"><span class="prop-key">CTA</span><span class="prop-val">BG --amber, full-width button</span></div>
+    </div>
+  </div>
+
+  <!-- Carousel -->
+  <p style="font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#D4860A;margin:24px 0 10px">Hero Carousel</p>
+  <div class="comp-grid">
+    <div class="comp-card">
+      <h4>Carousel Container</h4>
+      <div class="prop"><span class="prop-key">Height</span><span class="prop-val">100vh, min-height 720px</span></div>
+      <div class="prop"><span class="prop-key">Position</span><span class="prop-val">relative, overflow hidden</span></div>
+      <div class="prop"><span class="prop-key">Background</span><span class="prop-val">--purple-deep (flash prevention)</span></div>
+      <div class="prop"><span class="prop-key">Slide Transition</span><span class="prop-val">opacity 0→1, duration 1.1s ease</span></div>
+      <div class="prop"><span class="prop-key">Auto-advance</span><span class="prop-val">5.5 seconds</span></div>
+    </div>
+    <div class="comp-card">
+      <h4>Slide Content Area</h4>
+      <div class="prop"><span class="prop-key">Position</span><span class="prop-val">Absolute, aligned flex-end</span></div>
+      <div class="prop"><span class="prop-key">Padding</span><span class="prop-val">0 40px 88px (sides + bottom)</span></div>
+      <div class="prop"><span class="prop-key">Max Width</span><span class="prop-val">1340px, centered</span></div>
+      <div class="prop"><span class="prop-key">Eyebrow In Anim</span><span class="prop-val">opacity 0→1, translateY 10→0, delay 0.2s</span></div>
+      <div class="prop"><span class="prop-key">H1 In Anim</span><span class="prop-val">opacity 0→1, translateY 18→0, delay 0.35s</span></div>
+      <div class="prop"><span class="prop-key">Tagline In Anim</span><span class="prop-val">opacity 0→1, translateY 12→0, delay 0.5s</span></div>
+      <div class="prop"><span class="prop-key">Buttons In Anim</span><span class="prop-val">opacity 0→1, delay 0.7s</span></div>
+    </div>
+    <div class="comp-card">
+      <h4>Geometric Accent</h4>
+      <div class="prop"><span class="prop-key">Vertical Divider</span><span class="prop-val">1px, left 50%, top 15% – bottom 15%</span></div>
+      <div class="prop"><span class="prop-key">Divider Color</span><span class="prop-val">linear: transparent → rgba(212,134,10, 0.4) → transparent</span></div>
+      <div class="prop"><span class="prop-key">Watermark</span><span class="prop-val">Dancing Script 700, 180px, 5% opacity, right 6%</span></div>
+    </div>
+    <div class="comp-card">
+      <h4>Controls Bar (bottom)</h4>
+      <div class="prop"><span class="prop-key">Height</span><span class="prop-val">~64px</span></div>
+      <div class="prop"><span class="prop-key">Background</span><span class="prop-val">rgba(18,8,32, 0.4) + blur(10px)</span></div>
+      <div class="prop"><span class="prop-key">Border Top</span><span class="prop-val">1px solid rgba(255,255,255, 0.07)</span></div>
+      <div class="prop"><span class="prop-key">Dot Inactive</span><span class="prop-val">7px circle, rgba(255,255,255,.28)</span></div>
+      <div class="prop"><span class="prop-key">Dot Active</span><span class="prop-val">7px × 24px pill, #D4860A</span></div>
+      <div class="prop"><span class="prop-key">Arrow Button</span><span class="prop-val">40×40px, border 1px rgba(255,255,255,.2), hover border --amber</span></div>
+    </div>
+    <div class="comp-card">
+      <h4>Right Stats Panel</h4>
+      <div class="prop"><span class="prop-key">Position</span><span class="prop-val">Absolute, right 40px, bottom 88px</span></div>
+      <div class="prop"><span class="prop-key">Number Font</span><span class="prop-val">Playfair Display 500, 36px</span></div>
+      <div class="prop"><span class="prop-key">Number Color</span><span class="prop-val">--amber-light (#F0A830)</span></div>
+      <div class="prop"><span class="prop-key">Label Font</span><span class="prop-val">Inter 600, 9px, ls 0.2em, uppercase</span></div>
+      <div class="prop"><span class="prop-key">Label Color</span><span class="prop-val">rgba(255,255,255,.4)</span></div>
+      <div class="prop"><span class="prop-key">Hidden At</span><span class="prop-val">≤768px</span></div>
+    </div>
+  </div>
+
+  <!-- Category Cards -->
+  <p style="font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#D4860A;margin:24px 0 10px">Category Cards</p>
+  <div class="comp-grid">
+    <div class="comp-card">
+      <h4>Card Container</h4>
+      <div class="prop"><span class="prop-key">Overflow</span><span class="prop-val">hidden, relative</span></div>
+      <div class="prop"><span class="prop-key">BG Scale Hover</span><span class="prop-val">transform: scale(1.05), 0.55s var(--ease)</span></div>
+      <div class="prop"><span class="prop-key">Cat Count Font</span><span class="prop-val">Inter 600, 9px, ls 0.22em, --amber-light</span></div>
+      <div class="prop"><span class="prop-key">Cat Name Font</span><span class="prop-val">Playfair Display 500, 26px (38px featured)</span></div>
+      <div class="prop"><span class="prop-key">Overlay Padding</span><span class="prop-val">28px</span></div>
+    </div>
+    <div class="comp-card">
+      <h4>Arrow Badge (hover)</h4>
+      <div class="prop"><span class="prop-key">Size</span><span class="prop-val">34 × 34px, border-radius 50%</span></div>
+      <div class="prop"><span class="prop-key">Border</span><span class="prop-val">1px solid rgba(255,255,255,.3)</span></div>
+      <div class="prop"><span class="prop-key">Default State</span><span class="prop-val">opacity 0, translateX(6px)</span></div>
+      <div class="prop"><span class="prop-key">Hover State</span><span class="prop-val">opacity 1, translateX(0), 0.3s</span></div>
+      <div class="prop"><span class="prop-key">Position</span><span class="prop-val">absolute, top 22px, right 22px</span></div>
+    </div>
+  </div>
+
+  <!-- Brand Tiles -->
+  <p style="font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#D4860A;margin:24px 0 10px">Brand Tiles</p>
+  <div class="comp-grid">
+    <div class="comp-card">
+      <h4>Tile</h4>
+      <div class="prop"><span class="prop-key">Background</span><span class="prop-val">#FFFFFF</span></div>
+      <div class="prop"><span class="prop-key">Min Height</span><span class="prop-val">100px</span></div>
+      <div class="prop"><span class="prop-key">Padding</span><span class="prop-val">32px 20px</span></div>
+      <div class="prop"><span class="prop-key">Hover BG</span><span class="prop-val">--purple-pale (#F3EEF9)</span></div>
+      <div class="prop"><span class="prop-key">Bottom Bar</span><span class="prop-val">2px --amber, scaleX 0→1 on hover</span></div>
+    </div>
+    <div class="comp-card">
+      <h4>Brand Name Text</h4>
+      <div class="prop"><span class="prop-key">Font</span><span class="prop-val">Playfair Display 500, 17px, ls 0.06em</span></div>
+      <div class="prop"><span class="prop-key">Color Default</span><span class="prop-val">--stone (#3D3548)</span></div>
+      <div class="prop"><span class="prop-key">Color Hover</span><span class="prop-val">--purple-mid (#5B1F8C)</span></div>
+    </div>
+  </div>
+
+  <!-- Event Cards -->
+  <p style="font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#D4860A;margin:24px 0 10px">Event Cards</p>
+  <div class="comp-grid">
+    <div class="comp-card">
+      <h4>Featured Event Card</h4>
+      <div class="prop"><span class="prop-key">Min Height</span><span class="prop-val">380px</span></div>
+      <div class="prop"><span class="prop-key">BG Hover Scale</span><span class="prop-val">scale(1.04), 0.55s</span></div>
+      <div class="prop"><span class="prop-key">Shade Overlay</span><span class="prop-val">linear-gradient(to top, rgba(0,0,0,.82), rgba(0,0,0,.04) 55%)</span></div>
+      <div class="prop"><span class="prop-key">Date Badge BG</span><span class="prop-val">--amber, Inter 700, 9px, ls 0.2em</span></div>
+      <div class="prop"><span class="prop-key">Title Font</span><span class="prop-val">Playfair Display 500, 40px (featured), 28px (small)</span></div>
+      <div class="prop"><span class="prop-key">Body Padding</span><span class="prop-val">30px</span></div>
+    </div>
+    <div class="comp-card">
+      <h4>Small Event Card</h4>
+      <div class="prop"><span class="prop-key">Min Height</span><span class="prop-val">190px</span></div>
+      <div class="prop"><span class="prop-key">Discover Link</span><span class="prop-val">Inter 600, 10px, ls 0.16em, --amber-light</span></div>
+      <div class="prop"><span class="prop-key">Link Arrow Hover</span><span class="prop-val">gap 8→14px, 0.2s</span></div>
+    </div>
+  </div>
+
+  <!-- Offer Cards -->
+  <p style="font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#D4860A;margin:24px 0 10px">Offer Cards</p>
+  <div class="comp-grid">
+    <div class="comp-card">
+      <h4>Card Container</h4>
+      <div class="prop"><span class="prop-key">Background</span><span class="prop-val">#FFFFFF</span></div>
+      <div class="prop"><span class="prop-key">Hover Transform</span><span class="prop-val">translateY(-5px)</span></div>
+      <div class="prop"><span class="prop-key">Hover Shadow</span><span class="prop-val">0 24px 60px rgba(45,10,78,.12)</span></div>
+      <div class="prop"><span class="prop-key">Transition</span><span class="prop-val">transform 0.3s, box-shadow 0.3s</span></div>
+    </div>
+    <div class="comp-card">
+      <h4>Image Area + Body</h4>
+      <div class="prop"><span class="prop-key">Image Height</span><span class="prop-val">230px</span></div>
+      <div class="prop"><span class="prop-key">Badge</span><span class="prop-val">--amber, Inter 700, 9px, pos absolute top-left</span></div>
+      <div class="prop"><span class="prop-key">Body Padding</span><span class="prop-val">24px</span></div>
+      <div class="prop"><span class="prop-key">Category Label</span><span class="prop-val">Inter 600, 9px, ls 0.22em, --amber</span></div>
+      <div class="prop"><span class="prop-key">Footer Divider</span><span class="prop-val">1px --cream-mid, pt 14px</span></div>
+      <div class="prop"><span class="prop-key">CTA Link Color</span><span class="prop-val">--purple-mid, gap 6→10px hover</span></div>
+    </div>
+  </div>
+
+  <!-- Visit Cards -->
+  <p style="font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#D4860A;margin:24px 0 10px">Visit Cards</p>
+  <div class="comp-grid">
+    <div class="comp-card">
+      <h4>Card Container</h4>
+      <div class="prop"><span class="prop-key">Background</span><span class="prop-val">rgba(255,255,255,.04)</span></div>
+      <div class="prop"><span class="prop-key">Border</span><span class="prop-val">1px solid rgba(255,255,255,.06)</span></div>
+      <div class="prop"><span class="prop-key">Padding</span><span class="prop-val">36px 28px</span></div>
+      <div class="prop"><span class="prop-key">Hover BG</span><span class="prop-val">rgba(212,134,10,.08)</span></div>
+      <div class="prop"><span class="prop-key">Hover Border</span><span class="prop-val">rgba(212,134,10,.25)</span></div>
+    </div>
+    <div class="comp-card">
+      <h4>Icon Wrap + Text</h4>
+      <div class="prop"><span class="prop-key">Icon Circle</span><span class="prop-val">46 × 46px, border 1px rgba(212,134,10,.35), color --amber</span></div>
+      <div class="prop"><span class="prop-key">Label Font</span><span class="prop-val">Inter 600, 9px, ls 0.22em, --amber</span></div>
+      <div class="prop"><span class="prop-key">Heading Font</span><span class="prop-val">Playfair Display 500, 20px, --white</span></div>
+      <div class="prop"><span class="prop-key">Body Font</span><span class="prop-val">Inter 300, 12px, rgba(255,255,255,.4), lh 1.7</span></div>
+    </div>
+  </div>
+
+  <!-- Buttons -->
+  <p style="font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#D4860A;margin:24px 0 10px">Buttons</p>
+  <div class="comp-grid">
+    <div class="comp-card">
+      <h4>Primary — Amber Fill</h4>
+      <div class="prop"><span class="prop-key">Background</span><span class="prop-val">--amber (#D4860A)</span></div>
+      <div class="prop"><span class="prop-key">Hover BG</span><span class="prop-val">--amber-light (#F0A830)</span></div>
+      <div class="prop"><span class="prop-key">Text</span><span class="prop-val">Inter 600, 11px, ls 0.14em, uppercase, #FFF</span></div>
+      <div class="prop"><span class="prop-key">Padding</span><span class="prop-val">15px 36px</span></div>
+      <div class="prop"><span class="prop-key">Hover Transform</span><span class="prop-val">translateY(-1px)</span></div>
+    </div>
+    <div class="comp-card">
+      <h4>Secondary — Ghost White</h4>
+      <div class="prop"><span class="prop-key">Background</span><span class="prop-val">transparent</span></div>
+      <div class="prop"><span class="prop-key">Border</span><span class="prop-val">1px solid rgba(255,255,255,.3)</span></div>
+      <div class="prop"><span class="prop-key">Text Color</span><span class="prop-val">rgba(255,255,255,.75)</span></div>
+      <div class="prop"><span class="prop-key">Padding</span><span class="prop-val">14px 36px</span></div>
+      <div class="prop"><span class="prop-key">Hover</span><span class="prop-val">border rgba(255,255,255,.7), text #FFF</span></div>
+    </div>
+    <div class="comp-card">
+      <h4>Tertiary — Purple Fill</h4>
+      <div class="prop"><span class="prop-key">Background</span><span class="prop-val">--purple-mid (#5B1F8C)</span></div>
+      <div class="prop"><span class="prop-key">Hover BG</span><span class="prop-val">--purple-soft (#7B3FB2)</span></div>
+      <div class="prop"><span class="prop-key">Text</span><span class="prop-val">Inter 600, 11px, ls 0.14em, uppercase, #FFF</span></div>
+      <div class="prop"><span class="prop-key">Padding</span><span class="prop-val">15px 36px</span></div>
+    </div>
+    <div class="comp-card">
+      <h4>Outline — Ink</h4>
+      <div class="prop"><span class="prop-key">Background</span><span class="prop-val">transparent</span></div>
+      <div class="prop"><span class="prop-key">Border</span><span class="prop-val">1px solid rgba(18,8,32,.25)</span></div>
+      <div class="prop"><span class="prop-key">Text Color</span><span class="prop-val">--ink</span></div>
+      <div class="prop"><span class="prop-key">Hover</span><span class="prop-val">BG --ink, text #FFF</span></div>
+      <div class="prop"><span class="prop-key">Padding</span><span class="prop-val">14px 36px</span></div>
+    </div>
+    <div class="comp-card">
+      <h4>Members (nav)</h4>
+      <div class="prop"><span class="prop-key">Border</span><span class="prop-val">1px solid rgba(212,134,10,.6)</span></div>
+      <div class="prop"><span class="prop-key">Text</span><span class="prop-val">--amber-light, Inter 600, 10px, ls 0.15em</span></div>
+      <div class="prop"><span class="prop-key">Padding</span><span class="prop-val">8px 20px</span></div>
+      <div class="prop"><span class="prop-key">Hover</span><span class="prop-val">BG --amber, text --ink, border --amber</span></div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <p style="font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#D4860A;margin:24px 0 10px">Footer</p>
+  <div class="comp-grid">
+    <div class="comp-card">
+      <h4>Footer Container</h4>
+      <div class="prop"><span class="prop-key">Background</span><span class="prop-val">#080410 (Near Black)</span></div>
+      <div class="prop"><span class="prop-key">Border Top</span><span class="prop-val">1px solid rgba(212,134,10,.12)</span></div>
+      <div class="prop"><span class="prop-key">Padding</span><span class="prop-val">64px 0 (top) / 32px (bottom)</span></div>
+      <div class="prop"><span class="prop-key">Grid</span><span class="prop-val">2.2fr 1fr 1fr 1fr, gap 48px</span></div>
+    </div>
+    <div class="comp-card">
+      <h4>Brand Column</h4>
+      <div class="prop"><span class="prop-key">Logo Font</span><span class="prop-val">Dancing Script 700, 30px, #FFF</span></div>
+      <div class="prop"><span class="prop-key">Bar</span><span class="prop-val">--amber, Inter 700, 8px, ls 0.24em</span></div>
+      <div class="prop"><span class="prop-key">Tagline</span><span class="prop-val">Playfair Display Italic, 12px, rgba(255,255,255,.35)</span></div>
+      <div class="prop"><span class="prop-key">About Text</span><span class="prop-val">Inter 300, 12px, rgba(255,255,255,.4), max-width 260px</span></div>
+      <div class="prop"><span class="prop-key">Social Icons</span><span class="prop-val">36×36px, border rgba(255,255,255,.12), hover --amber</span></div>
+    </div>
+    <div class="comp-card">
+      <h4>Nav Columns (3×)</h4>
+      <div class="prop"><span class="prop-key">Heading Font</span><span class="prop-val">Inter 600, 10px, ls 0.2em, uppercase, --amber</span></div>
+      <div class="prop"><span class="prop-key">Link Font</span><span class="prop-val">Inter 300, 12px, rgba(255,255,255,.4)</span></div>
+      <div class="prop"><span class="prop-key">Link Hover</span><span class="prop-val">rgba(255,255,255,.75)</span></div>
+      <div class="prop"><span class="prop-key">Gap Between Links</span><span class="prop-val">10px</span></div>
+    </div>
+    <div class="comp-card">
+      <h4>Footer Bottom Bar</h4>
+      <div class="prop"><span class="prop-key">Border Top</span><span class="prop-val">1px solid rgba(255,255,255,.07)</span></div>
+      <div class="prop"><span class="prop-key">Margin Top</span><span class="prop-val">28px (after grid bottom border)</span></div>
+      <div class="prop"><span class="prop-key">Copyright Font</span><span class="prop-val">Inter 300, 11px, rgba(255,255,255,.25)</span></div>
+      <div class="prop"><span class="prop-key">Legal Links</span><span class="prop-val">Inter 300, 11px, rgba(255,255,255,.25), gap 20px</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 6. EFFECTS & SHADOWS ══ -->
+<div class="sec">
+  <div class="sec-title"><div class="num">6</div>Effects, Shadows &amp; Borders</div>
+  <div class="sec-sub">Define each as a Figma effect style. Layer shadows for depth.</div>
+
+  <div class="effect-row">
+    <div class="effect-sample" style="box-shadow:0 24px 60px rgba(45,10,78,.12)"></div>
+    <div class="effect-info">
+      <div class="effect-name">Card Hover Shadow</div>
+      <div class="effect-val">box-shadow: 0 24px 60px rgba(45, 10, 78, 0.12)</div>
+    </div>
+    <div class="chip chip-p">Offer Cards</div>
+  </div>
+  <div class="effect-row">
+    <div class="effect-sample" style="background:#2D0A4E;box-shadow:0 20px 60px rgba(0,0,0,.5)"></div>
+    <div class="effect-info">
+      <div class="effect-name">Promo Dialog Shadow</div>
+      <div class="effect-val">box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5)</div>
+    </div>
+    <div class="chip chip-p">Floating Promo</div>
+  </div>
+  <div class="effect-row">
+    <div class="effect-sample" style="border:1px solid rgba(212,134,10,.2)"></div>
+    <div class="effect-info">
+      <div class="effect-name">Amber Border (dark)</div>
+      <div class="effect-val">border: 1px solid rgba(212, 134, 10, 0.2) — used on dark backgrounds</div>
+    </div>
+    <div class="chip chip-a">Nav, Promo</div>
+  </div>
+  <div class="effect-row">
+    <div class="effect-sample" style="border:1px solid #F0ECF6"></div>
+    <div class="effect-info">
+      <div class="effect-name">Light Border</div>
+      <div class="effect-val">border: 1px solid #F0ECF6 (--cream-mid) — used on white/cream backgrounds</div>
+    </div>
+    <div class="chip chip-g">Cards, Tiles, Dividers</div>
+  </div>
+  <div class="effect-row">
+    <div class="effect-sample" style="border:1px solid rgba(255,255,255,.07)"></div>
+    <div class="effect-info">
+      <div class="effect-name">Dark Subtle Border</div>
+      <div class="effect-val">border: 1px solid rgba(255, 255, 255, 0.07)</div>
+    </div>
+    <div class="chip chip-p">Visit cards, footer</div>
+  </div>
+  <div class="effect-row">
+    <div class="effect-sample" style="backdrop-filter:blur(16px);background:rgba(18,8,32,.96);border:1px solid rgba(212,134,10,.2)"></div>
+    <div class="effect-info">
+      <div class="effect-name">Frosted Nav</div>
+      <div class="effect-val">backdrop-filter: blur(16px) saturate(1.6) · background: rgba(18,8,32,.96)</div>
+    </div>
+    <div class="chip chip-p">Navigation</div>
+  </div>
+
+  <table style="margin-top:20px">
+    <thead><tr><th>Transition</th><th>Duration</th><th>Easing</th><th>Used On</th></tr></thead>
+    <tbody>
+      <tr><td>Button hover</td><td>300ms</td><td>ease</td><td>All buttons (background, transform)</td></tr>
+      <tr><td>Nav link underline</td><td>300ms</td><td>cubic-bezier(.25,.46,.45,.94)</td><td>Desktop nav underline scaleX</td></tr>
+      <tr><td>Card lift hover</td><td>300ms</td><td>cubic-bezier(.25,.46,.45,.94)</td><td>Offer cards translateY + shadow</td></tr>
+      <tr><td>Cat bg zoom</td><td>550ms</td><td>cubic-bezier(.25,.46,.45,.94)</td><td>Category & event card bg scale</td></tr>
+      <tr><td>Slide transition</td><td>1100ms</td><td>ease</td><td>Hero carousel opacity</td></tr>
+      <tr><td>Slide content in</td><td>600–700ms</td><td>ease</td><td>H1, eyebrow, desc, buttons per slide</td></tr>
+      <tr><td>Dot pill expand</td><td>350ms</td><td>ease</td><td>Carousel dots inactive→active</td></tr>
+      <tr><td>Mobile menu</td><td>0ms (display toggle)</td><td>—</td><td>Hamburger overlay</td></tr>
+      <tr><td>Brand tile underline</td><td>300ms</td><td>cubic-bezier(.25,.46,.45,.94)</td><td>Bottom amber bar scaleX</td></tr>
+      <tr><td>Arrow gap</td><td>200ms</td><td>ease</td><td>Link arrows gap expand on hover</td></tr>
+      <tr><td>Promo entry</td><td>600ms, delay 2.5s</td><td>cubic-bezier(.25,.46,.45,.94)</td><td>Floating promo translateY + opacity</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ══ 7. ICONS ══ -->
+<div class="sec">
+  <div class="sec-title"><div class="num">7</div>Icons</div>
+  <div class="sec-sub">All icons are inline SVG using a consistent 24×24 viewBox, stroke-width 1.5, no fill. Use Heroicons Outline or Lucide.</div>
+
+  <div class="icon-note">
+    ⚠ Never use emoji as icons. Use SVG only. All icons: <code>viewBox="0 0 24 24"</code>, <code>fill="none"</code>, <code>stroke="currentColor"</code>, <code>stroke-width="1.5"</code>. Rendered at 18–20px on desktop, inherit color from parent.
+  </div>
+
+  <table>
+    <thead><tr><th>Icon</th><th>Used For</th><th>Size</th><th>Color Context</th></tr></thead>
+    <tbody>
+      <tr><td>Circle + clock hands</td><td>Hours (info band, visit card)</td><td>18px</td><td>--amber on dark</td></tr>
+      <tr><td>Map pin</td><td>Location (info band, visit card)</td><td>18px</td><td>--amber on dark</td></tr>
+      <tr><td>Briefcase / parking</td><td>Parking (info band, visit card)</td><td>18px</td><td>--amber on dark</td></tr>
+      <tr><td>Location / concierge</td><td>Concierge (info band)</td><td>18px</td><td>--amber on dark</td></tr>
+      <tr><td>Phone</td><td>Contact (visit card)</td><td>18px</td><td>--amber on dark</td></tr>
+      <tr><td>Search circle</td><td>Nav search icon</td><td>20px</td><td>rgba(255,255,255,.6)</td></tr>
+      <tr><td>Person circle</td><td>Nav account icon</td><td>20px</td><td>rgba(255,255,255,.6)</td></tr>
+      <tr><td>Arrow right</td><td>Button CTAs, link arrows</td><td>12–13px</td><td>inherit (white or amber-light)</td></tr>
+      <tr><td>Instagram rect + circle</td><td>Footer social</td><td>14px</td><td>rgba(255,255,255,.4) → --amber hover</td></tr>
+      <tr><td>Facebook f</td><td>Footer social</td><td>14px</td><td>rgba(255,255,255,.4) → --amber hover</td></tr>
+      <tr><td>TikTok note</td><td>Footer social</td><td>14px</td><td>rgba(255,255,255,.4) → --amber hover</td></tr>
+      <tr><td>YouTube play</td><td>Footer social</td><td>14px</td><td>rgba(255,255,255,.4) → --amber hover</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ══ 8. HANDOFF NOTES ══ -->
+<div class="sec">
+  <div class="sec-title"><div class="num">8</div>Figma Handoff Notes</div>
+
+  <div class="handoff">
+    <h4>Setting Up in Figma</h4>
+    <ul>
+      <li>Create a <strong>Local Styles</strong> panel with all 14 color tokens from Section 1. Name them using the "/" hierarchy (e.g. Brand/Purple Deep, Text/Ink, Surface/Cream).</li>
+      <li>Create <strong>Text Styles</strong> for every row in the typography table — name them Display/H1, Heading/H2, Body/Copy, UI/Button, UI/Label, Brand/Logo, etc.</li>
+      <li>Create <strong>Effect Styles</strong> for the 6 shadow/border tokens in Section 6.</li>
+      <li>Set the Figma canvas background to #F7F5FA (slightly off --cream for visibility).</li>
+      <li>Use <strong>Auto Layout</strong> for all components. Gap = spacing tokens from Section 3.</li>
+      <li>Set frame width to 1340px for desktop layouts, 768px for tablet, 375px for mobile.</li>
+    </ul>
+  </div>
+
+  <div class="handoff">
+    <h4>Component Hierarchy (Figma pages)</h4>
+    <ul>
+      <li><strong>🎨 Tokens</strong> — Color swatches, spacing scale, typography specimens</li>
+      <li><strong>🧩 Components</strong> — All atoms and molecules: buttons, badges, icons, logo, nav, cards</li>
+      <li><strong>📄 Home</strong> — Full desktop home page (1340px frame)</li>
+      <li><strong>📱 Mobile</strong> — Mobile home page (375px frame) with hamburger open state</li>
+      <li><strong>🔲 Prototype</strong> — Linked frames for interactive click-through</li>
+    </ul>
+  </div>
+
+  <div class="handoff">
+    <h4>Key Measurements to Note</h4>
+    <ul>
+      <li>Nav height: <strong>76px desktop / 64px mobile</strong> — all page content starts below this</li>
+      <li>Hero: <strong>100vh</strong> — content padding-bottom 88px to clear the controls bar</li>
+      <li>Controls bar at hero bottom: <strong>~64px</strong> tall with frosted glass</li>
+      <li>Section vertical padding: <strong>88px top and bottom</strong> (96px for newsletter)</li>
+      <li>Category grid height: <strong>640px desktop</strong>, auto on tablet/mobile</li>
+      <li>Dining inset card: <strong>positioned -28px bottom, -28px right</strong> of main image</li>
+      <li>Logo bar overlaps script by <strong>-2px</strong> (margin-top: -2px)</li>
+    </ul>
+  </div>
+</div>
+
+</div><!-- /wrap -->
+</body>
+</html>
